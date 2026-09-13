@@ -27,7 +27,10 @@ export default function SidebarNavItem({
         size="md"
         data-active={active}
         aria-current={active ? "page" : undefined}
-        className={cn("group gap-1.5", tone === "quiet" && "text-subtle")}
+        className={cn(
+          "group h-[30px] gap-1.5 py-0 data-[active=true]:h-8",
+          tone === "quiet" && "text-subtle",
+        )}
       >
         <Icon
           aria-hidden

@@ -11,7 +11,12 @@ import Sparkline from "@/components/_common/sparkline";
 import { TAG_TONES, ownerByName, type Company } from "@/data/companies";
 import { formatDate, formatMoney, splitTags } from "@/lib/companies";
 import { cn } from "@/lib/utils";
-import { columnClass } from "./table-columns";
+import {
+  TABLE_CELL_CLASS,
+  TABLE_ROW_CLASS,
+  columnClass,
+  type TableColumnKey,
+} from "./table-columns";
 import CalendarIcon from "@/public/assets/images/_common/calendar.svg";
 import DotsIcon from "@/public/assets/images/companies/table/dots-horizontal.svg";
 
@@ -23,6 +28,14 @@ type CompanyRowProps = {
   onOpen: () => void;
 };
 
+function cellClass(key: TableColumnKey) {
+  return cn(TABLE_CELL_CLASS, columnClass(key));
+}
+
+function stop(event: MouseEvent) {
+  event.stopPropagation();
+}
+
 export default function CompanyRow({
   company,
   selected,
@@ -33,26 +46,28 @@ export default function CompanyRow({
   const owner = ownerByName(company.owner);
   const { visible, hidden } = splitTags(company.tags);
 
-  function stop(event: MouseEvent) {
-    event.stopPropagation();
-  }
-
   return (
     <TableRow
+      role="row"
       onClick={onOpen}
       data-active={active || selected}
-      className="cursor-pointer hover:bg-card/60 data-[active=true]:border-card data-[active=true]:bg-card"
+      className={cn(
+        TABLE_ROW_CLASS,
+        "hover:bg-card/60 data-[active=true]:border-card data-[active=true]:bg-card cursor-pointer",
+      )}
     >
-      <TableCell className="w-9 pr-0 text-center" onClick={stop}>
-        <Checkbox
-          checked={selected}
-          onCheckedChange={onToggle}
-          aria-label={`Select ${company.name}`}
-          className="align-middle"
-        />
+      <TableCell role="cell" className={cellClass("name")}>
+        <span className="flex items-center gap-5">
+          <Checkbox
+            checked={selected}
+            onCheckedChange={onToggle}
+            onClick={stop}
+            aria-label={`Select ${company.name}`}
+          />
+          {company.name}
+        </span>
       </TableCell>
-      <TableCell className={columnClass("name")}>{company.name}</TableCell>
-      <TableCell className={columnClass("segment")}>
+      <TableCell role="cell" className={cellClass("segment")}>
         <span className="flex items-center gap-[3px]">
           {visible.map((tag) => (
             <Tag key={tag} tone={TAG_TONES[tag]}>
@@ -66,33 +81,36 @@ export default function CompanyRow({
           )}
         </span>
       </TableCell>
-      <TableCell className={columnClass("owner")}>
+      <TableCell role="cell" className={cellClass("owner")}>
         <span className="flex items-center gap-1.5">
           <Avatar src={owner.avatar} alt="" />
           {owner.name}
         </span>
       </TableCell>
-      <TableCell className={columnClass("openDeals")}>
+      <TableCell role="cell" className={cellClass("openDeals")}>
         {company.openDeals}
       </TableCell>
-      <TableCell className={columnClass("pipelineValue")}>
-        <span className="flex items-center justify-end gap-1">
+      <TableCell role="cell" className={cellClass("pipelineValue")}>
+        <span className="flex items-center gap-1">
           <span className="text-muted-foreground">$</span>
           {formatMoney(company.pipelineValue)}
         </span>
       </TableCell>
-      <TableCell className={columnClass("winProbability")}>
-        <span className="flex items-center justify-end gap-2">
+      <TableCell role="cell" className={cellClass("winProbability")}>
+        <span className="flex items-center gap-2">
           <SegmentBar percent={company.winProbability} className="w-[74px]" />
           <span className="w-[4ch] text-right">{company.winProbability}%</span>
         </span>
       </TableCell>
-      <TableCell className={columnClass("trend")}>
-        <Sparkline values={company.trend} className="justify-center" />
+      <TableCell role="cell" className={cellClass("trend")}>
+        <Sparkline values={company.trend} />
       </TableCell>
-      <TableCell className={columnClass("lastInteraction")}>
+      <TableCell role="cell" className={cellClass("lastInteraction")}>
         <span className="flex items-center gap-1">
-          <CalendarIcon aria-hidden className="size-3.5 shrink-0 text-foreground" />
+          <CalendarIcon
+            aria-hidden
+            className="text-foreground size-3.5 shrink-0"
+          />
           <span className="tabular-nums">
             {formatDate(company.lastInteraction.date)}
           </span>
@@ -100,7 +118,7 @@ export default function CompanyRow({
           {company.lastInteraction.label}
         </span>
       </TableCell>
-      <TableCell className="w-[60px] text-center" onClick={stop}>
+      <TableCell role="cell" className={cellClass("action")} onClick={stop}>
         <Button
           variant="ghost"
           size="icon-sm"

@@ -17,12 +17,12 @@ export const buttonVariants = cva(
         subtle:
           "bg-[#232323] text-foreground shadow-[0px_0px_0px_1px_#333333] hover:bg-muted",
         ghost: "text-subtle hover:bg-white/6 hover:text-foreground",
-        nav: "w-full justify-start rounded-lg text-sidebar-foreground hover:bg-white/4 hover:text-foreground data-[active=true]:bg-sidebar-primary data-[active=true]:text-foreground data-[active=true]:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.4),inset_0px_1px_0px_0px_rgba(255,255,255,0.1),inset_0px_0px_0px_1px_rgba(255,255,255,0.06)]",
+        nav: "w-full justify-start rounded-lg text-sidebar-foreground hover:text-foreground data-[active=true]:bg-sidebar-primary data-[active=true]:text-foreground data-[active=true]:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.4),inset_0px_1px_0px_0px_rgba(255,255,255,0.1),inset_0px_0px_0px_1px_rgba(255,255,255,0.06)]",
         link: "rounded-none text-foreground underline decoration-from-font underline-offset-2 hover:text-soft",
       },
       size: {
-        sm: "p-[9px] text-[12px]",
-        md: "p-2 text-[14px]",
+        sm: "p-[9px] text-[12px] leading-none",
+        md: "p-2 text-[14px] leading-none",
         icon: "size-[30px] p-0",
         "icon-sm": "size-6 p-0",
         none: "p-0",

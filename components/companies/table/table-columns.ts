@@ -1,27 +1,39 @@
 export const TABLE_COLUMNS = [
-  { key: "name", label: "Companies", className: "text-left" },
-  { key: "segment", label: "Segment & Stage", className: "text-left" },
-  { key: "owner", label: "Account Owner", className: "text-left" },
-  { key: "openDeals", label: "Open Deals", className: "text-right tabular-nums" },
+  { key: "name", label: "Companies", className: "justify-start" },
+  { key: "segment", label: "Segment & Stage", className: "justify-start" },
+  { key: "owner", label: "Account Owner", className: "justify-start" },
+  {
+    key: "openDeals",
+    label: "Open Deals",
+    className: "justify-end tabular-nums",
+  },
   {
     key: "pipelineValue",
     label: "Pipeline Value",
-    className: "text-right tabular-nums",
+    className: "justify-end tabular-nums",
   },
   {
     key: "winProbability",
     label: "Win Probability",
-    className: "text-right tabular-nums",
+    className: "justify-end tabular-nums",
   },
-  { key: "trend", label: "Activity Trend", className: "text-center" },
+  { key: "trend", label: "Activity Trend", className: "justify-center" },
   {
     key: "lastInteraction",
     label: "Last Interaction",
-    className: "pl-6 text-left",
+    className: "justify-start",
   },
+  { key: "action", label: "Action", className: "justify-center" },
 ] as const;
 
 export type TableColumnKey = (typeof TABLE_COLUMNS)[number]["key"];
+
+export const TABLE_GRID_CLASS =
+  "grid min-w-max grid-cols-[repeat(9,max-content)] justify-between";
+
+export const TABLE_ROW_CLASS = "col-span-full grid grid-cols-subgrid";
+
+export const TABLE_CELL_CLASS = "flex items-center";
 
 export function columnClass(key: TableColumnKey) {
   return TABLE_COLUMNS.find((column) => column.key === key)?.className ?? "";

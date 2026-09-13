@@ -12,8 +12,14 @@ import {
 } from "@/components/_ui/table";
 import CompanyRow from "./company-row";
 import TableFooter from "./table-footer";
-import { TABLE_COLUMNS } from "./table-columns";
+import {
+  TABLE_CELL_CLASS,
+  TABLE_COLUMNS,
+  TABLE_GRID_CLASS,
+  TABLE_ROW_CLASS,
+} from "./table-columns";
 import { filterCompanies } from "@/lib/companies";
+import { cn } from "@/lib/utils";
 import { useCompaniesStore } from "@/stores/companies-store";
 
 export default function CompaniesTable() {
@@ -47,28 +53,38 @@ export default function CompaniesTable() {
 
   return (
     <ScrollArea orientation="both" className="min-h-0 flex-1">
-      <Table className="min-w-[1120px]">
-        <TableHeader>
-          <TableRow className="border-t">
-            <TableHead className="w-9 pr-0 text-center">
-              <Checkbox
-                checked={
-                  allSelected ? true : someSelected ? "indeterminate" : false
-                }
-                onCheckedChange={toggleAll}
-                aria-label="Select all companies"
-                className="align-middle"
-              />
-            </TableHead>
+      <Table role="table" className={cn(TABLE_GRID_CLASS, "w-full")}>
+        <TableHeader role="rowgroup" className="contents">
+          <TableRow role="row" className={cn(TABLE_ROW_CLASS, "border-t")}>
             {TABLE_COLUMNS.map((column) => (
-              <TableHead key={column.key} className={column.className}>
-                {column.label}
+              <TableHead
+                key={column.key}
+                role="columnheader"
+                className={cn(TABLE_CELL_CLASS, column.className)}
+              >
+                {column.key === "name" ? (
+                  <span className="flex items-center gap-5">
+                    <Checkbox
+                      checked={
+                        allSelected
+                          ? true
+                          : someSelected
+                            ? "indeterminate"
+                            : false
+                      }
+                      onCheckedChange={toggleAll}
+                      aria-label="Select all companies"
+                    />
+                    {column.label}
+                  </span>
+                ) : (
+                  column.label
+                )}
               </TableHead>
             ))}
-            <TableHead className="w-[60px] text-center">Action</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody role="rowgroup" className="contents">
           {visible.map((company) => (
             <CompanyRow
               key={company.id}
@@ -80,10 +96,10 @@ export default function CompaniesTable() {
             />
           ))}
           {visible.length === 0 && (
-            <TableRow>
+            <TableRow role="row" className={TABLE_ROW_CLASS}>
               <td
-                colSpan={TABLE_COLUMNS.length + 2}
-                className="caption-style text-muted-foreground h-[120px] text-center"
+                role="cell"
+                className="caption-style text-muted-foreground col-span-full flex h-[120px] items-center justify-center"
               >
                 No companies match the current filters.
               </td>

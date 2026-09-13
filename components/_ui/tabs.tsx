@@ -29,17 +29,28 @@ function TabsList({
 
 function TabsTrigger({
   className,
+  children,
   ...props
 }: ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "caption-style -mb-px cursor-pointer border-b border-transparent py-4 text-subtle outline-none transition-[color,border-color] duration-150 ease-power3-in-out hover:text-soft focus-visible:text-foreground data-[state=active]:border-foreground data-[state=active]:font-medium data-[state=active]:text-foreground",
+        "group caption-style -mb-px grid cursor-pointer text-center border-b border-transparent py-4 text-subtle outline-none select-none transition-[color,border-color] duration-150 ease-power3-in-out hover:text-soft focus-visible:text-foreground data-[state=active]:border-foreground data-[state=active]:text-foreground",
         className,
       )}
       {...props}
-    />
+    >
+      <span
+        aria-hidden
+        className="invisible col-start-1 row-start-1 font-medium"
+      >
+        {children}
+      </span>
+      <span className="col-start-1 row-start-1 group-data-[state=active]:font-medium">
+        {children}
+      </span>
+    </TabsPrimitive.Trigger>
   );
 }
 
