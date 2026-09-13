@@ -21,7 +21,7 @@ export default function SidebarNavItem({
   iconClassName,
 }: SidebarNavItemProps) {
   return (
-    <li>
+    <li className={cn(active && "mb-0.75")}>
       <Button
         variant="nav"
         size="md"
@@ -35,7 +35,7 @@ export default function SidebarNavItem({
         <Icon
           aria-hidden
           className={cn(
-            "size-3.5 shrink-0 text-subtle transition-colors duration-150 ease-power3-out group-hover:text-icon group-data-[active=true]:text-icon",
+            "text-subtle ease-power3-out group-hover:text-icon group-data-[active=true]:text-icon size-3.5 shrink-0 transition-colors duration-150",
             iconClassName,
           )}
         />
