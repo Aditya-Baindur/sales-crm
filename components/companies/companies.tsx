@@ -3,6 +3,7 @@ import CompaniesToolbar from "./toolbar/toolbar";
 import CompaniesTable from "./table/companies-table";
 import CompanyDetail from "./detail/company-detail";
 import NewCompanyDialog from "./new-company/new-company-dialog";
+import CommandMenu from "./command-menu/command-menu";
 
 export default function Companies() {
   return (
@@ -12,6 +13,7 @@ export default function Companies() {
       <CompaniesTable />
       <CompanyDetail />
       <NewCompanyDialog />
+      <CommandMenu />
     </section>
   );
 }

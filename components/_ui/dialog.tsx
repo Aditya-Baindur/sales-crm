@@ -27,7 +27,7 @@ function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:ease-power2-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:ease-power2-out fixed inset-0 z-50 bg-black/60 backdrop-blur-[6px] duration-250 data-[state=closed]:duration-200",
+        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:ease-power3-out fixed inset-0 z-50 bg-black/60 backdrop-blur-[6px] duration-250 data-[state=closed]:duration-200",
         className,
       )}
       {...props}
@@ -46,7 +46,7 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "border-line-strong bg-background text-foreground data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power2-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power2-out fixed top-1/2 left-1/2 z-50 flex w-[calc(100%-2rem)] max-w-[480px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl border shadow-[0px_24px_48px_0px_rgba(0,0,0,0.5)] duration-250 data-[state=closed]:duration-200 outline-none",
+          "border-line-strong bg-background text-foreground data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power3-out fixed top-1/2 left-1/2 z-50 flex w-[calc(100%-2rem)] max-w-[480px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl border shadow-[0px_24px_48px_0px_rgba(0,0,0,0.5)] duration-250 data-[state=closed]:duration-200 outline-none",
           className,
         )}
         {...props}

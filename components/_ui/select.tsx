@@ -22,7 +22,7 @@ function SelectTrigger({
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       className={cn(
-        "group flex h-9 w-full cursor-pointer items-center justify-between gap-2 rounded-lg border border-line-strong bg-secondary px-3 text-[14px] leading-none text-foreground outline-none transition-[border-color] duration-150 ease-power2-in-out focus-visible:border-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-subtle",
+        "group flex h-9 w-full cursor-pointer items-center justify-between gap-2 rounded-lg border border-line-strong bg-secondary px-3 text-[14px] leading-none text-foreground outline-none transition-[border-color] duration-150 ease-power3-out focus-visible:border-ring disabled:cursor-not-allowed disabled:opacity-50 data-[placeholder]:text-subtle",
         className,
       )}
       {...props}
@@ -31,7 +31,7 @@ function SelectTrigger({
       <SelectPrimitive.Icon asChild>
         <ChevronDownIcon
           aria-hidden
-          className="size-3 shrink-0 text-[#898b8d] transition-transform duration-200 ease-power2-in-out group-data-[state=open]:rotate-180"
+          className="size-3 shrink-0 text-[#898b8d] transition-transform duration-200 ease-power3-out group-data-[state=open]:rotate-180"
         />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
@@ -51,7 +51,7 @@ function SelectContent({
         position={position}
         sideOffset={6}
         className={cn(
-          "z-50 max-h-[var(--radix-select-content-available-height)] min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-lg border border-line-strong bg-popover text-popover-foreground shadow-[0px_12px_32px_0px_rgba(0,0,0,0.45),0px_0px_0px_1px_#0e0e0e] duration-150 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power2-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power2-out",
+          "z-50 max-h-[var(--radix-select-content-available-height)] min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-lg border border-line-strong bg-popover text-popover-foreground shadow-[0px_12px_32px_0px_rgba(0,0,0,0.45),0px_0px_0px_1px_#0e0e0e] duration-200 data-[state=closed]:duration-150 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power3-out",
           className,
         )}
         {...props}
@@ -73,7 +73,7 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex cursor-pointer items-center gap-2 rounded-md py-2 pr-2 pl-6 text-[14px] leading-none text-soft outline-none select-none transition-colors duration-150 ease-power2-in-out data-[highlighted]:bg-white/6 data-[highlighted]:text-foreground data-[state=checked]:text-foreground",
+        "relative flex cursor-pointer items-center gap-2 rounded-md py-2 pr-2 pl-6 text-[14px] leading-none text-soft outline-none select-none transition-colors duration-150 ease-power3-out data-[highlighted]:bg-white/6 data-[highlighted]:text-foreground data-[state=checked]:text-foreground",
         className,
       )}
       {...props}

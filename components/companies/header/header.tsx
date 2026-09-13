@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/_ui/tabs";
 import { useCompaniesStore } from "@/stores/companies-store";
 import MenuIcon from "@/public/assets/images/companies/sidebar/list.svg";
 import ActiveDot from "@/public/assets/images/companies/header/active-dot.svg";
-import SearchIcon from "@/public/assets/images/companies/header/search.svg";
+import SearchIcon from "@/public/assets/images/_common/search.svg";
 import BellIcon from "@/public/assets/images/companies/header/bell.svg";
 
 const TABS = [
@@ -19,6 +19,7 @@ export default function CompaniesHeader() {
   const activeTab = useCompaniesStore((state) => state.activeTab);
   const setActiveTab = useCompaniesStore((state) => state.setActiveTab);
   const setSidebarOpen = useCompaniesStore((state) => state.setSidebarOpen);
+  const setSearchOpen = useCompaniesStore((state) => state.setSearchOpen);
 
   return (
     <header className="shrink-0">
@@ -34,14 +35,20 @@ export default function CompaniesHeader() {
             <MenuIcon aria-hidden className="size-3.5" />
           </Button>
           <h1>Companies</h1>
-          <span className="caption-style inline-flex shrink-0 items-center gap-0.5 rounded-full border border-[#363636] bg-muted py-[3px] pr-[5px] pl-[3px]">
+          <span className="caption-style bg-muted inline-flex shrink-0 items-center gap-0.5 rounded-full border border-[#363636] py-[3px] pr-[5px] pl-[3px]">
             <ActiveDot aria-hidden className="size-3" />
             Active
           </span>
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
-          <Button variant="secondary" size="icon" aria-label="Search">
+          <Button
+            variant="secondary"
+            size="icon"
+            aria-label="Search"
+            aria-keyshortcuts="Meta+K Control+K"
+            onClick={() => setSearchOpen(true)}
+          >
             <SearchIcon aria-hidden className="size-3.5" />
           </Button>
           <Button variant="secondary" size="icon" aria-label="Notifications">
@@ -52,10 +59,7 @@ export default function CompaniesHeader() {
             size="none"
             className="caption-style h-[30px] gap-1.5 py-[5px] pr-[7px] pl-[5px] font-normal"
           >
-            <Avatar
-              src="/assets/images/_common/avatars/jensen.png"
-              alt=""
-            />
+            <Avatar src="/assets/images/_common/avatars/jensen.png" alt="" />
             <span className="hidden sm:inline">Jensen Ackles</span>
             <span className="sr-only sm:hidden">Jensen Ackles</span>
           </Button>
@@ -63,7 +67,7 @@ export default function CompaniesHeader() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="border-b border-border px-4">
+        <TabsList className="border-border border-b px-4">
           {TABS.map((tab) => (
             <TabsTrigger key={tab.value} value={tab.value}>
               {tab.label}

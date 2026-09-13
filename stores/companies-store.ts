@@ -13,6 +13,7 @@ type CompaniesState = {
   detailOpen: boolean;
   newCompanyOpen: boolean;
   sidebarOpen: boolean;
+  searchOpen: boolean;
   activeTab: string;
   setSortBy: (sortBy: SortKey) => void;
   setOwner: (owner: string) => void;
@@ -24,6 +25,7 @@ type CompaniesState = {
   closeDetail: () => void;
   setNewCompanyOpen: (open: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
+  setSearchOpen: (open: boolean) => void;
   setActiveTab: (tab: string) => void;
   addCompany: (company: Company) => void;
 };
@@ -39,6 +41,7 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   detailOpen: false,
   newCompanyOpen: false,
   sidebarOpen: false,
+  searchOpen: false,
   activeTab: "companies",
   setSortBy: (sortBy) => set({ sortBy }),
   setOwner: (owner) => set({ owner }),
@@ -55,6 +58,7 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   closeDetail: () => set({ detailOpen: false }),
   setNewCompanyOpen: (newCompanyOpen) => set({ newCompanyOpen }),
   setSidebarOpen: (sidebarOpen) => set({ sidebarOpen }),
+  setSearchOpen: (searchOpen) => set({ searchOpen }),
   setActiveTab: (activeTab) => set({ activeTab }),
   addCompany: (company) =>
     set((state) => ({
