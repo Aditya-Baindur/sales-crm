@@ -11,6 +11,7 @@ import Sparkline from "@/components/_common/sparkline";
 import { TAG_TONES, ownerByName, type Company } from "@/data/companies";
 import { formatDate, formatMoney, splitTags } from "@/lib/companies";
 import { cn } from "@/lib/utils";
+import { columnClass } from "./table-columns";
 import CalendarIcon from "@/public/assets/images/_common/calendar.svg";
 import DotsIcon from "@/public/assets/images/companies/table/dots-horizontal.svg";
 
@@ -50,8 +51,8 @@ export default function CompanyRow({
           className="align-middle"
         />
       </TableCell>
-      <TableCell className="w-[160px]">{company.name}</TableCell>
-      <TableCell className="w-[217px]">
+      <TableCell className={columnClass("name")}>{company.name}</TableCell>
+      <TableCell className={columnClass("segment")}>
         <span className="flex items-center gap-[3px]">
           {visible.map((tag) => (
             <Tag key={tag} tone={TAG_TONES[tag]}>
@@ -65,32 +66,36 @@ export default function CompanyRow({
           )}
         </span>
       </TableCell>
-      <TableCell className="w-[140px]">
+      <TableCell className={columnClass("owner")}>
         <span className="flex items-center gap-1.5">
           <Avatar src={owner.avatar} alt="" />
           {owner.name}
         </span>
       </TableCell>
-      <TableCell className="w-[89px]">{company.openDeals}</TableCell>
-      <TableCell className="w-[103px]">
-        <span className="flex items-center gap-1">
+      <TableCell className={columnClass("openDeals")}>
+        {company.openDeals}
+      </TableCell>
+      <TableCell className={columnClass("pipelineValue")}>
+        <span className="flex items-center justify-end gap-1">
           <span className="text-muted-foreground">$</span>
           {formatMoney(company.pipelineValue)}
         </span>
       </TableCell>
-      <TableCell className="w-[135px]">
-        <span className="flex items-center justify-between gap-2">
+      <TableCell className={columnClass("winProbability")}>
+        <span className="flex items-center justify-end gap-2">
           <SegmentBar percent={company.winProbability} className="w-[74px]" />
-          <span className="text-right">{company.winProbability}%</span>
+          <span className="w-[4ch] text-right">{company.winProbability}%</span>
         </span>
       </TableCell>
-      <TableCell className="w-[101px]">
+      <TableCell className={columnClass("trend")}>
         <Sparkline values={company.trend} className="justify-center" />
       </TableCell>
-      <TableCell>
+      <TableCell className={columnClass("lastInteraction")}>
         <span className="flex items-center gap-1">
           <CalendarIcon aria-hidden className="size-3.5 shrink-0 text-foreground" />
-          {formatDate(company.lastInteraction.date)}
+          <span className="tabular-nums">
+            {formatDate(company.lastInteraction.date)}
+          </span>
           <span aria-hidden className="mx-[3px] h-2 w-px bg-white/15" />
           {company.lastInteraction.label}
         </span>

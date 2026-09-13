@@ -11,19 +11,10 @@ import {
 } from "@/components/_ui/table";
 import CompanyRow from "./company-row";
 import TableFooter from "./table-footer";
+import { TABLE_COLUMNS } from "./table-columns";
 import { filterCompanies } from "@/lib/companies";
 import { useCompaniesStore } from "@/stores/companies-store";
 
-const COLUMNS = [
-  "Companies",
-  "Segment & Stage",
-  "Account Owner",
-  "Open Deals",
-  "Pipeline Value",
-  "Win Probability",
-  "Activity Trend",
-  "Last Interaction",
-];
 
 export default function CompaniesTable() {
   const companies = useCompaniesStore((state) => state.companies);
@@ -68,8 +59,10 @@ export default function CompaniesTable() {
                 className="align-middle"
               />
             </TableHead>
-            {COLUMNS.map((column) => (
-              <TableHead key={column}>{column}</TableHead>
+            {TABLE_COLUMNS.map((column) => (
+              <TableHead key={column.key} className={column.className}>
+                {column.label}
+              </TableHead>
             ))}
             <TableHead className="w-[60px] text-center">Action</TableHead>
           </TableRow>
@@ -88,7 +81,7 @@ export default function CompaniesTable() {
           {visible.length === 0 && (
             <TableRow>
               <td
-                colSpan={COLUMNS.length + 2}
+                colSpan={TABLE_COLUMNS.length + 2}
                 className="caption-style h-[120px] text-center text-muted-foreground"
               >
                 No companies match the current filters.
