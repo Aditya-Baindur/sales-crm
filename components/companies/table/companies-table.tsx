@@ -33,6 +33,7 @@ export default function CompaniesTable() {
   const activityWindow = useCompaniesStore((state) => state.activityWindow);
   const selectedIds = useCompaniesStore((state) => state.selectedIds);
   const detailId = useCompaniesStore((state) => state.detailId);
+  const detailOpen = useCompaniesStore((state) => state.detailOpen);
   const toggleSelected = useCompaniesStore((state) => state.toggleSelected);
   const setSelected = useCompaniesStore((state) => state.setSelected);
   const openDetail = useCompaniesStore((state) => state.openDetail);
@@ -79,7 +80,7 @@ export default function CompaniesTable() {
               key={company.id}
               company={company}
               selected={selectedIds.includes(company.id)}
-              active={detailId === company.id}
+              active={detailOpen && detailId === company.id}
               onToggle={() => toggleSelected(company.id)}
               onOpen={() => openDetail(company.id)}
             />

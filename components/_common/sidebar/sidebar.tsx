@@ -7,6 +7,7 @@ import {
   SheetTitle,
 } from "@/components/_ui/sheet";
 import SidebarContent from "./sidebar-content";
+import SidebarResizer from "./sidebar-resizer";
 import { useCompaniesStore } from "@/stores/companies-store";
 
 export default function Sidebar() {
@@ -15,8 +16,9 @@ export default function Sidebar() {
 
   return (
     <>
-      <aside className="hidden w-[254px] shrink-0 border-r border-sidebar-border bg-sidebar lg:flex lg:flex-col">
+      <aside className="relative hidden w-(--sidebar-width) shrink-0 border-r border-sidebar-border bg-sidebar lg:flex lg:flex-col">
         <SidebarContent />
+        <SidebarResizer />
       </aside>
 
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>

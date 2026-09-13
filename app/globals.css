@@ -118,6 +118,7 @@
   --trend-muted: #395e4d;
   --track: #3a3a3a;
   --status: #16c89e;
+  --sidebar-width: 254px;
   --tag-blue-bg: #1d2b3e;
   --tag-blue-border: #23354c;
   --tag-blue-text: #bfdbfe;
@@ -261,6 +262,12 @@ select:autofill {
 }
 
 @layer components {
+}
+
+html[data-sidebar-resizing],
+html[data-sidebar-resizing] * {
+  cursor: col-resize !important;
+  user-select: none !important;
 }
 
 .pswp .pswp__button--arrow--next .pswp__icn {

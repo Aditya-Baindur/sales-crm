@@ -57,11 +57,6 @@ export default function NewCompanyDialog() {
     setForm((current) => ({ ...current, [key]: value }));
   }
 
-  function handleOpenChange(next: boolean) {
-    setOpen(next);
-    if (!next) setForm(EMPTY_FORM);
-  }
-
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const name = form.name.trim();
@@ -81,12 +76,11 @@ export default function NewCompanyDialog() {
     };
 
     addCompany(company);
-    setForm(EMPTY_FORM);
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent onCloseAutoFocus={() => setForm(EMPTY_FORM)}>
         <form onSubmit={handleSubmit} className="flex flex-col">
           <DialogHeader>
             <DialogTitle>New Company</DialogTitle>

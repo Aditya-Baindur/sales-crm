@@ -10,6 +10,7 @@ type CompaniesState = {
   activityWindow: number;
   selectedIds: string[];
   detailId: string | null;
+  detailOpen: boolean;
   newCompanyOpen: boolean;
   sidebarOpen: boolean;
   activeTab: string;
@@ -35,6 +36,7 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   activityWindow: 90,
   selectedIds: ["microsoft"],
   detailId: null,
+  detailOpen: false,
   newCompanyOpen: false,
   sidebarOpen: false,
   activeTab: "companies",
@@ -49,8 +51,8 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
         : [...state.selectedIds, id],
     })),
   setSelected: (selectedIds) => set({ selectedIds }),
-  openDetail: (detailId) => set({ detailId }),
-  closeDetail: () => set({ detailId: null }),
+  openDetail: (detailId) => set({ detailId, detailOpen: true }),
+  closeDetail: () => set({ detailOpen: false }),
   setNewCompanyOpen: (newCompanyOpen) => set({ newCompanyOpen }),
   setSidebarOpen: (sidebarOpen) => set({ sidebarOpen }),
   setActiveTab: (activeTab) => set({ activeTab }),

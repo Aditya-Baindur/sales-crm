@@ -35,6 +35,7 @@ const WINDOW_OPTIONS = TREND_WINDOWS.map((label) => ({ value: label, label }));
 
 export default function CompanyDetail() {
   const detailId = useCompaniesStore((state) => state.detailId);
+  const detailOpen = useCompaniesStore((state) => state.detailOpen);
   const companies = useCompaniesStore((state) => state.companies);
   const closeDetail = useCompaniesStore((state) => state.closeDetail);
   const [trendWindow, setTrendWindow] = useState(TREND_WINDOWS[1]);
@@ -44,7 +45,10 @@ export default function CompanyDetail() {
   const owner = company ? ownerByName(company.owner) : null;
 
   return (
-    <Sheet open={company !== undefined} onOpenChange={(open) => !open && closeDetail()}>
+    <Sheet
+      open={detailOpen && company !== undefined}
+      onOpenChange={(open) => !open && closeDetail()}
+    >
       <SheetContent side="right" className="sm:w-[560px] sm:max-w-[560px]">
         <SheetHeader>
           <div className="flex items-center gap-2">
