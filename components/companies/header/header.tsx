@@ -5,7 +5,8 @@ import Button from "@/components/_ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/_ui/tabs";
 import Notifications from "./notifications/notifications";
 import { useCompaniesStore } from "@/stores/companies-store";
-import MenuIcon from "@/public/assets/images/companies/sidebar/list.svg";
+import Logo from "@/public/assets/images/_common/logo.svg";
+import MenuIcon from "@/public/assets/images/_common/menu.svg";
 import ActiveDot from "@/public/assets/images/companies/header/active-dot.svg";
 import SearchIcon from "@/public/assets/images/_common/search.svg";
 
@@ -25,6 +26,11 @@ export default function CompaniesHeader() {
     <header className="shrink-0">
       <div className="flex items-center justify-between gap-2 px-4 py-[14px]">
         <div className="flex min-w-0 items-center gap-2">
+          <Logo
+            role="img"
+            aria-label="Sales CRM"
+            className="size-8 shrink-0 overflow-visible lg:hidden"
+          />
           <Button
             variant="secondary"
             size="icon"
@@ -34,8 +40,8 @@ export default function CompaniesHeader() {
           >
             <MenuIcon aria-hidden className="size-3.5" />
           </Button>
-          <h1>Companies</h1>
-          <span className="caption-style bg-muted inline-flex shrink-0 items-center gap-0.5 rounded-full border border-[#363636] py-[3px] pr-[5px] pl-[3px]">
+          <h1 className="truncate">Companies</h1>
+          <span className="caption-style bg-muted inline-flex shrink-0 items-center gap-0.5 rounded-full max-[389px]:hidden border border-[#363636] py-[3px] pr-[5px] pl-[3px]">
             <ActiveDot aria-hidden className="size-3" />
             Active
           </span>

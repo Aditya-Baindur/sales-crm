@@ -52,62 +52,64 @@ export default function CompaniesTable() {
   }
 
   return (
-    <ScrollArea orientation="both" className="min-h-0 flex-1">
-      <Table role="table" className={cn(TABLE_GRID_CLASS, "w-full")}>
-        <TableHeader role="rowgroup" className="contents">
-          <TableRow role="row" className={cn(TABLE_ROW_CLASS, "border-t")}>
-            {TABLE_COLUMNS.map((column) => (
-              <TableHead
-                key={column.key}
-                role="columnheader"
-                className={cn(TABLE_CELL_CLASS, column.className)}
-              >
-                {column.key === "name" ? (
-                  <span className="flex items-center gap-5">
-                    <Checkbox
-                      checked={
-                        allSelected
-                          ? true
-                          : someSelected
-                            ? "indeterminate"
-                            : false
-                      }
-                      onCheckedChange={toggleAll}
-                      aria-label="Select all companies"
-                    />
-                    {column.label}
-                  </span>
-                ) : (
-                  column.label
-                )}
-              </TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody role="rowgroup" className="contents">
-          {visible.map((company) => (
-            <CompanyRow
-              key={company.id}
-              company={company}
-              selected={selectedIds.includes(company.id)}
-              active={detailOpen && detailId === company.id}
-              onToggle={() => toggleSelected(company.id)}
-              onOpen={() => openDetail(company.id)}
-            />
-          ))}
-          {visible.length === 0 && (
-            <TableRow role="row" className={TABLE_ROW_CLASS}>
-              <td
-                role="cell"
-                className="caption-style text-muted-foreground col-span-full flex h-[120px] items-center justify-center"
-              >
-                No companies match the current filters.
-              </td>
+    <div className="flex min-h-0 flex-1 flex-col">
+      <ScrollArea orientation="both" className="min-h-0 flex-1">
+        <Table role="table" className={cn(TABLE_GRID_CLASS, "w-full")}>
+          <TableHeader role="rowgroup" className="contents">
+            <TableRow role="row" className={cn(TABLE_ROW_CLASS, "border-t")}>
+              {TABLE_COLUMNS.map((column) => (
+                <TableHead
+                  key={column.key}
+                  role="columnheader"
+                  className={cn(TABLE_CELL_CLASS, column.className)}
+                >
+                  {column.key === "name" ? (
+                    <span className="flex items-center gap-5">
+                      <Checkbox
+                        checked={
+                          allSelected
+                            ? true
+                            : someSelected
+                              ? "indeterminate"
+                              : false
+                        }
+                        onCheckedChange={toggleAll}
+                        aria-label="Select all companies"
+                      />
+                      {column.label}
+                    </span>
+                  ) : (
+                    column.label
+                  )}
+                </TableHead>
+              ))}
             </TableRow>
-          )}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody role="rowgroup" className="contents">
+            {visible.map((company) => (
+              <CompanyRow
+                key={company.id}
+                company={company}
+                selected={selectedIds.includes(company.id)}
+                active={detailOpen && detailId === company.id}
+                onToggle={() => toggleSelected(company.id)}
+                onOpen={() => openDetail(company.id)}
+              />
+            ))}
+            {visible.length === 0 && (
+              <TableRow role="row" className={TABLE_ROW_CLASS}>
+                <td
+                  role="cell"
+                  className="caption-style text-muted-foreground col-span-full flex h-[120px] items-center justify-center"
+                >
+                  No companies match the current filters.
+                </td>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </ScrollArea>
       <TableFooter count={visible.length} />
-    </ScrollArea>
+    </div>
   );
 }
