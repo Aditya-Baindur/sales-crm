@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/_ui/button";
+import { ScrollArea } from "@/components/_ui/scroll-area";
 import FilterMenu from "@/components/_common/filter-menu";
 import {
   ACTIVITY_WINDOWS,
@@ -52,32 +53,38 @@ export default function CompaniesToolbar() {
 
   return (
     <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 px-4 py-4">
-      <div className="-mx-4 flex min-w-0 max-w-full gap-2 overflow-x-auto px-4 scrollbar-none sm:mx-0 sm:flex-wrap sm:px-0">
-        <FilterMenu
-          label="Sort by"
-          value={sortBy}
-          options={SORT_MENU_OPTIONS}
-          onChange={(value) => setSortBy(value as SortKey)}
-        />
-        <FilterMenu
-          label="Filter"
-          value={owner}
-          options={OWNER_OPTIONS}
-          onChange={setOwner}
-        />
-        <FilterMenu
-          label="Stage"
-          value={stage}
-          options={STAGE_OPTIONS}
-          onChange={setStage}
-        />
-        <FilterMenu
-          label="Last Activity"
-          value={String(activityWindow)}
-          options={ACTIVITY_OPTIONS}
-          onChange={(value) => setActivityWindow(Number(value))}
-        />
-      </div>
+      <ScrollArea
+        orientation="horizontal"
+        type="scroll"
+        className="-mx-4 w-[calc(100%+2rem)] sm:mx-0 sm:w-auto sm:min-w-0"
+      >
+        <div className="flex w-max gap-2 px-4 sm:w-auto sm:flex-wrap sm:px-0">
+          <FilterMenu
+            label="Sort by"
+            value={sortBy}
+            options={SORT_MENU_OPTIONS}
+            onChange={(value) => setSortBy(value as SortKey)}
+          />
+          <FilterMenu
+            label="Filter"
+            value={owner}
+            options={OWNER_OPTIONS}
+            onChange={setOwner}
+          />
+          <FilterMenu
+            label="Stage"
+            value={stage}
+            options={STAGE_OPTIONS}
+            onChange={setStage}
+          />
+          <FilterMenu
+            label="Last Activity"
+            value={String(activityWindow)}
+            options={ACTIVITY_OPTIONS}
+            onChange={(value) => setActivityWindow(Number(value))}
+          />
+        </div>
+      </ScrollArea>
 
       <div className="flex shrink-0 items-center gap-1">
         <Button variant="secondary" size="sm">

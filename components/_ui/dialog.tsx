@@ -3,6 +3,7 @@
 import type { ComponentProps } from "react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
+import { ScrollArea } from "@/components/_ui/scroll-area";
 import Button from "@/components/_ui/button";
 import XIcon from "@/public/assets/images/companies/detail/x.svg";
 
@@ -26,7 +27,7 @@ function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/60 backdrop-blur-[6px] duration-300 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:ease-power3-out",
+        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:ease-power3-out fixed inset-0 z-50 bg-black/60 backdrop-blur-[6px] duration-300",
         className,
       )}
       {...props}
@@ -45,12 +46,14 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "fixed top-1/2 left-1/2 z-50 flex w-[calc(100%-2rem)] max-w-[480px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl border border-line-strong bg-background text-foreground shadow-[0px_24px_48px_0px_rgba(0,0,0,0.5)] outline-none duration-300 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power3-out",
+          "border-line-strong bg-background text-foreground data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power3-out fixed top-1/2 left-1/2 z-50 flex w-[calc(100%-2rem)] max-w-[480px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-xl border shadow-[0px_24px_48px_0px_rgba(0,0,0,0.5)] duration-300 outline-none",
           className,
         )}
         {...props}
       >
-        {children}
+        <ScrollArea viewportClassName="max-h-[calc(100dvh-2rem)]">
+          {children}
+        </ScrollArea>
         <DialogPrimitive.Close asChild>
           <Button
             variant="ghost"
@@ -71,7 +74,7 @@ function DialogHeader({ className, ...props }: ComponentProps<"div">) {
     <div
       data-slot="dialog-header"
       className={cn(
-        "flex flex-col gap-2 border-b border-line-strong px-6 py-5",
+        "border-line-strong flex flex-col gap-2 border-b px-6 py-5",
         className,
       )}
       {...props}
@@ -84,7 +87,7 @@ function DialogFooter({ className, ...props }: ComponentProps<"div">) {
     <div
       data-slot="dialog-footer"
       className={cn(
-        "flex items-center justify-end gap-2 border-t border-line-strong px-6 py-4",
+        "border-line-strong flex items-center justify-end gap-2 border-t px-6 py-4",
         className,
       )}
       {...props}

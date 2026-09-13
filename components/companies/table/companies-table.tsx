@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import { Checkbox } from "@/components/_ui/checkbox";
+import { ScrollArea } from "@/components/_ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -14,7 +15,6 @@ import TableFooter from "./table-footer";
 import { TABLE_COLUMNS } from "./table-columns";
 import { filterCompanies } from "@/lib/companies";
 import { useCompaniesStore } from "@/stores/companies-store";
-
 
 export default function CompaniesTable() {
   const companies = useCompaniesStore((state) => state.companies);
@@ -30,8 +30,7 @@ export default function CompaniesTable() {
   const openDetail = useCompaniesStore((state) => state.openDetail);
 
   const visible = useMemo(
-    () =>
-      filterCompanies(companies, { sortBy, owner, stage, activityWindow }),
+    () => filterCompanies(companies, { sortBy, owner, stage, activityWindow }),
     [companies, sortBy, owner, stage, activityWindow],
   );
 
@@ -47,13 +46,15 @@ export default function CompaniesTable() {
   }
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col overflow-auto">
+    <ScrollArea orientation="both" className="min-h-0 flex-1">
       <Table className="min-w-[1120px]">
         <TableHeader>
           <TableRow className="border-t">
             <TableHead className="w-9 pr-0 text-center">
               <Checkbox
-                checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                checked={
+                  allSelected ? true : someSelected ? "indeterminate" : false
+                }
                 onCheckedChange={toggleAll}
                 aria-label="Select all companies"
                 className="align-middle"
@@ -82,7 +83,7 @@ export default function CompaniesTable() {
             <TableRow>
               <td
                 colSpan={TABLE_COLUMNS.length + 2}
-                className="caption-style h-[120px] text-center text-muted-foreground"
+                className="caption-style text-muted-foreground h-[120px] text-center"
               >
                 No companies match the current filters.
               </td>
@@ -91,6 +92,6 @@ export default function CompaniesTable() {
         </TableBody>
       </Table>
       <TableFooter count={visible.length} />
-    </div>
+    </ScrollArea>
   );
 }

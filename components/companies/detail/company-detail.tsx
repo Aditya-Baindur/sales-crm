@@ -5,6 +5,7 @@ import Asset from "@/components/_ui/asset";
 import Avatar from "@/components/_ui/avatar";
 import Button from "@/components/_ui/button";
 import Tag from "@/components/_ui/tag";
+import { ScrollArea } from "@/components/_ui/scroll-area";
 import {
   Sheet,
   SheetClose,
@@ -52,7 +53,7 @@ export default function CompanyDetail() {
       <SheetContent side="right" className="sm:w-[560px] sm:max-w-[560px]">
         <SheetHeader>
           <div className="flex items-center gap-2">
-            <BuildingIcon aria-hidden className="size-3.5 text-icon" />
+            <BuildingIcon aria-hidden className="text-icon size-3.5" />
             <SheetTitle>Companies Detail</SheetTitle>
           </div>
           <SheetDescription className="sr-only">
@@ -60,15 +61,15 @@ export default function CompanyDetail() {
           </SheetDescription>
           <SheetClose asChild>
             <Button variant="ghost" size="icon-sm" aria-label="Close details">
-              <XIcon aria-hidden className="size-4 text-foreground" />
+              <XIcon aria-hidden className="text-foreground size-4" />
             </Button>
           </SheetClose>
         </SheetHeader>
 
         {company && owner && (
-          <div className="min-h-0 flex-1 overflow-y-auto">
-            <div className="flex items-start gap-3 border-b border-line-strong p-5">
-              <span className="flex size-[50px] shrink-0 items-center justify-center rounded-[12.5px] bg-muted shadow-[0px_6.25px_6.25px_0px_rgba(15,15,15,0.24),0px_0px_0px_1.563px_#232323]">
+          <ScrollArea className="min-h-0 flex-1">
+            <div className="border-line-strong flex items-start gap-3 border-b p-5">
+              <span className="bg-muted flex size-[50px] shrink-0 items-center justify-center rounded-[12.5px] shadow-[0px_6.25px_6.25px_0px_rgba(15,15,15,0.24),0px_0px_0px_1.563px_#232323]">
                 {company.logo ? (
                   <Asset
                     type="image"
@@ -104,11 +105,11 @@ export default function CompanyDetail() {
                   {owner.name}
                 </span>
                 <span className="flex items-center gap-1">
-                  <MailIcon aria-hidden className="size-3 text-soft" />
+                  <MailIcon aria-hidden className="text-soft size-3" />
                   {owner.email}
                 </span>
                 <span className="flex items-center gap-1">
-                  <PhoneIcon aria-hidden className="size-3 text-soft" />
+                  <PhoneIcon aria-hidden className="text-soft size-3" />
                   {owner.phone}
                 </span>
               </div>
@@ -150,7 +151,7 @@ export default function CompanyDetail() {
                 ))}
               </div>
             </DetailSection>
-          </div>
+          </ScrollArea>
         )}
 
         <SheetFooter>
