@@ -356,6 +356,21 @@ export const SORT_OPTIONS = [
 
 export type SortKey = (typeof SORT_OPTIONS)[number]["value"];
 
+export const INTERACTION_TYPES = [
+  "Discovery",
+  "Demo",
+  "Pricing",
+  "Security",
+  "Legal",
+  "Product",
+  "Pilot",
+  "Exec",
+  "QBR Call",
+  "Partner",
+  "Renewal",
+  "Expansion",
+] as const;
+
 export const ACTIVITY_WINDOWS = [7, 30, 60, 90] as const;
 
 export type ActivityWindow = (typeof ACTIVITY_WINDOWS)[number];

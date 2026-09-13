@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { COMPANIES, type Company, type SortKey } from "@/data/companies";
+import { NOTIFICATIONS } from "@/data/notifications";
 import { ALL_OWNERS, ANY_STAGE } from "@/lib/companies";
 
 type CompaniesState = {
@@ -14,6 +15,7 @@ type CompaniesState = {
   newCompanyOpen: boolean;
   sidebarOpen: boolean;
   searchOpen: boolean;
+  unreadNotificationIds: string[];
   activeTab: string;
   setSortBy: (sortBy: SortKey) => void;
   setOwner: (owner: string) => void;
@@ -26,6 +28,8 @@ type CompaniesState = {
   setNewCompanyOpen: (open: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
   setSearchOpen: (open: boolean) => void;
+  markNotificationRead: (id: string) => void;
+  markAllNotificationsRead: () => void;
   setActiveTab: (tab: string) => void;
   addCompany: (company: Company) => void;
 };
@@ -42,6 +46,9 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   newCompanyOpen: false,
   sidebarOpen: false,
   searchOpen: false,
+  unreadNotificationIds: NOTIFICATIONS.filter((item) => item.unread).map(
+    (item) => item.id,
+  ),
   activeTab: "companies",
   setSortBy: (sortBy) => set({ sortBy }),
   setOwner: (owner) => set({ owner }),
@@ -59,6 +66,13 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   setNewCompanyOpen: (newCompanyOpen) => set({ newCompanyOpen }),
   setSidebarOpen: (sidebarOpen) => set({ sidebarOpen }),
   setSearchOpen: (searchOpen) => set({ searchOpen }),
+  markNotificationRead: (id) =>
+    set((state) => ({
+      unreadNotificationIds: state.unreadNotificationIds.filter(
+        (unread) => unread !== id,
+      ),
+    })),
+  markAllNotificationsRead: () => set({ unreadNotificationIds: [] }),
   setActiveTab: (activeTab) => set({ activeTab }),
   addCompany: (company) =>
     set((state) => ({

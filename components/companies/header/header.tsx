@@ -3,11 +3,11 @@
 import Avatar from "@/components/_ui/avatar";
 import Button from "@/components/_ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/_ui/tabs";
+import Notifications from "./notifications/notifications";
 import { useCompaniesStore } from "@/stores/companies-store";
 import MenuIcon from "@/public/assets/images/companies/sidebar/list.svg";
 import ActiveDot from "@/public/assets/images/companies/header/active-dot.svg";
 import SearchIcon from "@/public/assets/images/_common/search.svg";
-import BellIcon from "@/public/assets/images/companies/header/bell.svg";
 
 const TABS = [
   { value: "companies", label: "Companies" },
@@ -51,9 +51,7 @@ export default function CompaniesHeader() {
           >
             <SearchIcon aria-hidden className="size-3.5" />
           </Button>
-          <Button variant="secondary" size="icon" aria-label="Notifications">
-            <BellIcon aria-hidden className="size-3.5" />
-          </Button>
+          <Notifications />
           <Button
             variant="secondary"
             size="none"

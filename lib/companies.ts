@@ -7,6 +7,8 @@ export type CompanyFilters = {
   activityWindow: number;
 };
 
+export const TODAY = "2026-09-14";
+
 export const ALL_OWNERS = "all";
 export const ANY_STAGE = "any";
 
@@ -95,4 +97,9 @@ export function formatDate(iso: string) {
 
 export function formatMoney(value: number) {
   return value.toLocaleString("en-US");
+}
+
+export function daysSince(iso: string) {
+  const day = 24 * 60 * 60 * 1000;
+  return Math.max(0, Math.round((Date.parse(TODAY) - Date.parse(iso)) / day));
 }
