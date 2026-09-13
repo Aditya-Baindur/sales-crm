@@ -40,17 +40,22 @@ export default function FilterMenu({
           variant="secondary"
           size="none"
           className={cn(
-            "group h-[30px] overflow-hidden text-[12px] data-[state=open]:bg-muted",
+            "group h-[30px] gap-0 overflow-hidden text-[12px] data-[state=open]:bg-muted",
             className,
           )}
         >
           {label && (
             <>
-              <span className="pl-[9px] font-normal text-subtle">{label}</span>
-              <span aria-hidden className="ml-[9px] h-full w-px bg-white/8" />
+              <span className="px-[9px] font-normal text-subtle">{label}</span>
+              <span aria-hidden className="h-full w-px bg-white/8" />
             </>
           )}
-          <span className="flex items-center gap-1.5 px-[9px]">
+          <span
+            className={cn(
+              "flex items-center px-[9px]",
+              label ? "gap-1.5" : "gap-1",
+            )}
+          >
             {current?.label ?? value}
             <ChevronDownIcon
               aria-hidden

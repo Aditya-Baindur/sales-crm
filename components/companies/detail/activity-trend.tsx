@@ -41,7 +41,7 @@ export default function ActivityTrend({ company }: ActivityTrendProps) {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col gap-3 rounded-lg border border-line-strong p-3"
+            className="flex flex-col gap-3 rounded-lg border border-line-strong p-[11px]"
           >
             <span className="caption-style flex items-center gap-1 text-soft">
               <stat.icon aria-hidden className="size-3 shrink-0" />

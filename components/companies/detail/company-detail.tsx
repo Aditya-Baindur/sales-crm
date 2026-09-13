@@ -60,7 +60,12 @@ export default function CompanyDetail() {
             Account summary, pipeline health, activity and score cards
           </SheetDescription>
           <SheetClose asChild>
-            <Button variant="ghost" size="icon-sm" aria-label="Close details">
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className="-mr-1"
+              aria-label="Close details"
+            >
               <XIcon aria-hidden className="text-foreground size-4" />
             </Button>
           </SheetClose>
@@ -68,7 +73,7 @@ export default function CompanyDetail() {
 
         {company && owner && (
           <ScrollArea className="min-h-0 flex-1">
-            <div className="border-line-strong flex items-start gap-3 border-b p-5">
+            <div className="flex items-start gap-3 p-5 shadow-[inset_0_-1px_0_var(--line-strong)]">
               <span className="bg-muted flex size-[50px] shrink-0 items-center justify-center rounded-[12.5px] shadow-[0px_6.25px_6.25px_0px_rgba(15,15,15,0.24),0px_0px_0px_1.563px_#232323]">
                 {company.logo ? (
                   <Asset
@@ -135,13 +140,14 @@ export default function CompanyDetail() {
 
             <DetailSection
               title="Score card"
-              className="gap-3 border-b-0"
+              className="gap-3 shadow-none"
               action={
                 <FilterMenu
                   value={scoreWindow}
                   options={WINDOW_OPTIONS}
                   onChange={setScoreWindow}
                   align="end"
+                  className="shadow-[0px_4px_4px_0px_rgba(15,15,15,0.24),0px_0px_0px_1px_#393939]"
                 />
               }
             >

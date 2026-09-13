@@ -31,7 +31,7 @@ export default function ScoreCard({ card }: ScoreCardProps) {
           <span
             role="img"
             aria-label={`${card.stars} out of 5 stars`}
-            className="flex items-center gap-px rounded-full border border-white/4 bg-white/6 px-1 py-[3px] text-line-strong"
+            className="flex items-center gap-px rounded-full border border-white/4 bg-white/6 px-[3px] py-[2px] text-line-strong"
           >
             {Array.from({ length: 5 }, (_, index) =>
               index < card.stars ? (

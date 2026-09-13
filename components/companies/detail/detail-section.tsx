@@ -17,14 +17,18 @@ export default function DetailSection({
   return (
     <section
       className={cn(
-        "flex flex-col gap-4 border-b border-line-strong p-5",
+        "flex flex-col gap-4 p-5 shadow-[inset_0_-1px_0_var(--line-strong)]",
         className,
       )}
     >
-      <div className="flex min-h-[30px] items-center justify-between gap-2">
+      {action ? (
+        <div className="flex h-[30px] items-center justify-between gap-2">
+          <h4 className="eyebrow-style font-normal">{title}</h4>
+          {action}
+        </div>
+      ) : (
         <h4 className="eyebrow-style font-normal">{title}</h4>
-        {action}
-      </div>
+      )}
       {children}
     </section>
   );

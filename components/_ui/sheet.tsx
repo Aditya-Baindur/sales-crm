@@ -68,7 +68,7 @@ function SheetHeader({ className, ...props }: ComponentProps<"div">) {
     <div
       data-slot="sheet-header"
       className={cn(
-        "flex shrink-0 items-center justify-between gap-2 border-b border-line-strong px-6 py-5",
+        "flex h-14 shrink-0 items-center justify-between gap-2 border-b border-line-strong px-6",
         className,
       )}
       {...props}
@@ -81,7 +81,7 @@ function SheetFooter({ className, ...props }: ComponentProps<"div">) {
     <div
       data-slot="sheet-footer"
       className={cn(
-        "flex shrink-0 items-center justify-between gap-2 border-t border-line-strong px-6 py-4",
+        "flex h-[62px] shrink-0 items-center justify-between gap-2 border-t border-line-strong px-6",
         className,
       )}
       {...props}
