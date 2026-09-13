@@ -1,25 +1,36 @@
 import Link from "next/link";
-import { clsx } from "clsx";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
+import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-  "rounded-full font-bold leading-[140%] whitespace-nowrap transition-all active:scale-98 cursor-pointer disabled:pointer-events-none",
+  "inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 whitespace-nowrap rounded-full font-medium leading-none outline-none select-none transition-[background-color,color,box-shadow] duration-150 ease-power3-in-out focus-visible:ring-2 focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: "border border-[#202020] bg-[#202020] text-white",
-        secondary: "border-2 border-[#202020]",
+        primary:
+          "border border-white/8 bg-primary text-primary-foreground shadow-[0px_4px_4px_0px_rgba(42,42,42,0.32),0px_0px_0px_1px_#0e0e0e,inset_0px_4px_6px_0px_rgba(255,255,255,0.2),inset_0px_0px_0px_1px_rgba(255,255,255,0.15),inset_0px_-8px_14px_0px_rgba(0,0,0,0.15)] hover:bg-[#4b30ff]",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-[0px_0px_0px_1px_rgba(0,0,0,0.4),inset_0px_1px_0px_0px_rgba(255,255,255,0.1),inset_0px_0px_0px_1px_rgba(255,255,255,0.06)] hover:bg-muted",
+        muted:
+          "bg-muted text-foreground shadow-[0px_0px_0px_1px_rgba(0,0,0,0.4),inset_0px_1px_0px_0px_rgba(255,255,255,0.1),inset_0px_0px_0px_1px_rgba(255,255,255,0.06)] hover:bg-[#333333]",
+        subtle:
+          "bg-[#232323] text-foreground shadow-[0px_0px_0px_1px_#333333] hover:bg-muted",
+        ghost: "text-subtle hover:bg-white/6 hover:text-foreground",
+        nav: "w-full justify-start rounded-lg text-sidebar-foreground hover:bg-white/4 hover:text-foreground data-[active=true]:bg-sidebar-primary data-[active=true]:text-foreground data-[active=true]:shadow-[0px_0px_0px_1px_rgba(0,0,0,0.4),inset_0px_1px_0px_0px_rgba(255,255,255,0.1),inset_0px_0px_0px_1px_rgba(255,255,255,0.06)]",
+        link: "rounded-none text-foreground underline decoration-from-font underline-offset-2 hover:text-soft",
       },
       size: {
-        sm: "px-2 py-1 sm:px-4 sm:py-2 text-[13px] sm:text-[14px]",
-        md: "px-2 py-1 sm:px-4 sm:py-2 text-[14px] sm:text-base",
-        lg: "px-2 py-1 sm:px-4 sm:py-2 text-[15px] sm:text-lg",
+        sm: "p-[9px] text-[12px]",
+        md: "p-2 text-[14px]",
+        icon: "size-[30px] p-0",
+        "icon-sm": "size-6 p-0",
+        none: "p-0",
       },
     },
     defaultVariants: {
-      variant: "primary",
-      size: "lg",
+      variant: "secondary",
+      size: "sm",
     },
   },
 );
@@ -35,9 +46,10 @@ export default function Button({
   className,
   href,
   children,
+  type = "button",
   ...props
 }: ButtonProps) {
-  const classes = clsx(buttonVariants({ variant, size }), className);
+  const classes = cn(buttonVariants({ variant, size }), className);
 
   if (href) {
     return (
@@ -52,7 +64,7 @@ export default function Button({
   }
 
   return (
-    <button className={classes} {...props}>
+    <button type={type} className={classes} {...props}>
       {children}
     </button>
   );

@@ -1,9 +1,11 @@
-"use client";
+import Sidebar from "@/components/_common/sidebar/sidebar";
+import Companies from "@/components/companies/companies";
 
 export default function Home() {
   return (
-    <>
-      <main className="max-h-screen max-w-full overflow-x-clip"></main>
-    </>
+    <main className="flex h-dvh max-w-full overflow-hidden">
+      <Sidebar />
+      <Companies />
+    </main>
   );
 }

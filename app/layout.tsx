@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
+import { Geist } from "next/font/google";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageMetadata } from "@/lib/seo";
 import ScrollToTop from "@/components/_common/scroll-to-top";
 import "./globals.css";
 
-const interDisplay = localFont({
-  src: "../fonts/InterDisplay-Medium.woff2",
-  variable: "--font-inter-display",
-});
-
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
 });
 
 export const metadata: Metadata = {
@@ -30,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" className={geist.variable}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -38,9 +32,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${interDisplay.variable} ${inter.variable} relative z-0 font-sans antialiased`}
-      >
+      <body className="relative z-0 font-sans antialiased">
         <ScrollToTop />
         {children}
       </body>
