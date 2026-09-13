@@ -122,7 +122,7 @@ const TREND_B = [4, 4, 5, 5, 2, 7, 11, 7, 5, 7, 5, 3, 7, 14];
 const TREND_C = [4, 4, 10, 5, 2, 7, 11, 7, 11, 7, 11, 7, 7, 14];
 const TREND_D = [4, 4, 5, 12, 5, 7, 11, 3, 11, 3, 11, 3, 7, 14];
 
-export const COMPANIES: Company[] = [
+const COMPANY_RECORDS: Omit<Company, "logo">[] = [
   {
     id: "lvmh",
     name: "LVMH",
@@ -194,7 +194,6 @@ export const COMPANIES: Company[] = [
     trend: TREND_C,
     lastInteraction: { date: "2026-03-15", label: "Pilot" },
     activityDays: 79,
-    logo: "/assets/images/companies/detail/microsoft-logo.svg",
   },
   {
     id: "airbnb",
@@ -341,6 +340,11 @@ export const COMPANIES: Company[] = [
     activityDays: 2,
   },
 ];
+
+export const COMPANIES: Company[] = COMPANY_RECORDS.map((company) => ({
+  ...company,
+  logo: `/assets/images/companies/logos/${company.id}.svg`,
+}));
 
 export const SORT_OPTIONS = [
   { value: "pipelineValue", label: "Pipeline Value" },

@@ -35,7 +35,7 @@ export default function SidebarNavItem({
         <Icon
           aria-hidden
           className={cn(
-            "size-3.5 shrink-0 text-subtle transition-colors duration-150 ease-power3-in-out group-hover:text-icon group-data-[active=true]:text-icon",
+            "size-3.5 shrink-0 text-subtle transition-colors duration-150 ease-power2-in-out group-hover:text-icon group-data-[active=true]:text-icon",
             iconClassName,
           )}
         />
