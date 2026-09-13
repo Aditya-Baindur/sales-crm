@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Asset from "@/components/_ui/asset";
 import {
   Command,
   CommandDialog,
@@ -14,6 +13,7 @@ import {
   CommandSeparator,
   Kbd,
 } from "@/components/_ui/command";
+import { CommandCompanyRow, CommandTableHeader } from "./command-table";
 import { useCompaniesStore } from "@/stores/companies-store";
 import PlusIcon from "@/public/assets/images/_common/plus.svg";
 
@@ -55,6 +55,7 @@ export default function CommandMenu() {
       onOpenChange={setOpen}
       title="Search"
       description="Search companies by name, owner, segment or stage"
+      className="max-w-[960px]"
       onCloseAutoFocus={(event) => {
         if (actionRan.current) event.preventDefault();
         actionRan.current = false;
@@ -68,38 +69,16 @@ export default function CommandMenu() {
           placeholder="Search companies, owners, stages…"
           trailing={<Kbd>Esc</Kbd>}
         />
+        <CommandTableHeader />
         <CommandList>
           <CommandEmpty>No results for “{query}”</CommandEmpty>
-          <CommandGroup heading="Companies">
+          <CommandGroup>
             {companies.map((company) => (
-              <CommandItem
+              <CommandCompanyRow
                 key={company.id}
-                value={company.id}
-                keywords={[company.name, company.owner, ...company.tags]}
+                company={company}
                 onSelect={() => run(() => openDetail(company.id))}
-              >
-                <span className="bg-muted flex size-6 shrink-0 items-center justify-center rounded-md shadow-[0px_0px_0px_1px_#232323]">
-                  {company.logo ? (
-                    <Asset
-                      type="image"
-                      src={company.logo}
-                      alt=""
-                      width={1}
-                      height={1}
-                      fit="contain"
-                      className="size-3.5"
-                    />
-                  ) : (
-                    <span className="caption-style text-soft">
-                      {company.name.slice(0, 1)}
-                    </span>
-                  )}
-                </span>
-                <span className="min-w-0 flex-1 truncate">{company.name}</span>
-                <span className="caption-style text-subtle shrink-0">
-                  {company.owner}
-                </span>
-              </CommandItem>
+              />
             ))}
           </CommandGroup>
           <CommandSeparator />

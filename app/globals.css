@@ -58,6 +58,8 @@
 }
 
 @theme static {
+  --shadow-overlay: 0px 16px 40px 0px rgba(0, 0, 0, 0.5), 0px 0px 0px 1px #0e0e0e;
+
   --ease-power1-in: cubic-bezier(0.11, 0, 0.5, 0);
   --ease-power1-out: cubic-bezier(0.5, 1, 0.89, 1);
   --ease-power1-in-out: cubic-bezier(0.45, 0, 0.55, 1);
@@ -84,7 +86,7 @@
   --foreground: #f9fbff;
   --card: #1b1d20;
   --card-foreground: #f9fbff;
-  --popover: #1e1e1e;
+  --popover: #161616;
   --popover-foreground: #f9fbff;
   --primary: #4124fb;
   --primary-foreground: #f9fbff;

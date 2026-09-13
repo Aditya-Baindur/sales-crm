@@ -36,7 +36,7 @@ function DropdownMenuContent({
         sideOffset={sideOffset}
         align={align}
         className={cn(
-          "border-line-strong bg-popover text-popover-foreground data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power3-out z-50 min-w-[168px] overflow-hidden rounded-lg border shadow-[0px_12px_32px_0px_rgba(0,0,0,0.45),0px_0px_0px_1px_#0e0e0e] duration-200 data-[state=closed]:duration-150",
+          "border-line-strong bg-popover text-popover-foreground data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:ease-power3-out z-50 min-w-[168px] overflow-hidden rounded-lg border shadow-overlay duration-200 data-[state=closed]:duration-150",
           className,
         )}
         {...props}

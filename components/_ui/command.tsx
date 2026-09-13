@@ -31,7 +31,7 @@ function CommandDialog({
         <DialogPrimitive.Content
           onCloseAutoFocus={onCloseAutoFocus}
           className={cn(
-            "border-line-strong bg-popover text-popover-foreground data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] data-[state=open]:ease-power3-out fixed top-[12dvh] left-1/2 z-50 w-[calc(100%-2rem)] max-w-[560px] -translate-x-1/2 overflow-hidden rounded-xl border shadow-[0px_24px_48px_0px_rgba(0,0,0,0.5),0px_0px_0px_1px_#0e0e0e] duration-200 outline-none data-[state=closed]:duration-150",
+            "border-line-strong bg-popover text-popover-foreground data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] data-[state=open]:ease-power3-out fixed top-[12dvh] left-1/2 z-50 w-[calc(100%-2rem)] max-w-[560px] -translate-x-1/2 overflow-hidden rounded-xl border shadow-overlay duration-200 outline-none data-[state=closed]:duration-150",
             className,
           )}
         >
