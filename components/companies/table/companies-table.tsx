@@ -52,11 +52,11 @@ export default function CompaniesTable() {
   }
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
+    <div className="border-border flex min-h-0 flex-1 flex-col border-t">
       <ScrollArea orientation="both" className="min-h-0 flex-1">
         <Table role="table" className={cn(TABLE_GRID_CLASS, "w-full")}>
           <TableHeader role="rowgroup" className="contents">
-            <TableRow role="row" className={cn(TABLE_ROW_CLASS, "border-t")}>
+            <TableRow role="row" className={TABLE_ROW_CLASS}>
               {TABLE_COLUMNS.map((column) => (
                 <TableHead
                   key={column.key}

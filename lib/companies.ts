@@ -12,6 +12,25 @@ export const TODAY = "2026-09-14";
 export const ALL_OWNERS = "all";
 export const ANY_STAGE = "any";
 
+export const DEFAULT_FILTERS: CompanyFilters = {
+  sortBy: "pipelineValue",
+  owner: ALL_OWNERS,
+  stage: ANY_STAGE,
+  activityWindow: 90,
+};
+
+export function activeFilterCount({
+  owner,
+  stage,
+  activityWindow,
+}: CompanyFilters) {
+  return [
+    owner !== DEFAULT_FILTERS.owner,
+    stage !== DEFAULT_FILTERS.stage,
+    activityWindow !== DEFAULT_FILTERS.activityWindow,
+  ].filter(Boolean).length;
+}
+
 const TAG_CHAR_BUDGET = 20;
 
 export function filterCompanies(

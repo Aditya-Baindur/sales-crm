@@ -2,38 +2,17 @@
 
 import Button from "@/components/_ui/button";
 import FilterMenu from "@/components/_common/filter-menu";
+import MobileFilters from "./mobile-filters";
 import {
-  ACTIVITY_WINDOWS,
-  OWNERS,
-  SEGMENTS,
-  SORT_OPTIONS,
-  STAGES,
-  type SortKey,
-} from "@/data/companies";
-import { ALL_OWNERS, ANY_STAGE } from "@/lib/companies";
+  ACTIVITY_OPTIONS,
+  OWNER_OPTIONS,
+  SORT_MENU_OPTIONS,
+  STAGE_OPTIONS,
+} from "./filter-options";
+import type { SortKey } from "@/data/companies";
 import { useCompaniesStore } from "@/stores/companies-store";
 import ShareIcon from "@/public/assets/images/companies/toolbar/share.svg";
 import PlusIcon from "@/public/assets/images/_common/plus.svg";
-
-const OWNER_OPTIONS = [
-  { value: ALL_OWNERS, label: "All Owners" },
-  ...OWNERS.map((owner) => ({ value: owner.name, label: owner.name })),
-];
-
-const STAGE_OPTIONS = [
-  { value: ANY_STAGE, label: "Any" },
-  ...[...SEGMENTS, ...STAGES].map((tag) => ({ value: tag, label: tag })),
-];
-
-const ACTIVITY_OPTIONS = ACTIVITY_WINDOWS.map((days) => ({
-  value: String(days),
-  label: `${days} Days`,
-}));
-
-const SORT_MENU_OPTIONS = SORT_OPTIONS.map((option) => ({
-  value: option.value,
-  label: option.label,
-}));
 
 export default function CompaniesToolbar() {
   const sortBy = useCompaniesStore((state) => state.sortBy);
@@ -52,7 +31,9 @@ export default function CompaniesToolbar() {
 
   return (
     <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 px-4 py-4">
-      <div className="flex min-w-0 flex-wrap gap-2">
+      <MobileFilters className="sm:hidden" />
+
+      <div className="hidden min-w-0 flex-wrap gap-2 sm:flex">
         <FilterMenu
           label="Sort by"
           value={sortBy}

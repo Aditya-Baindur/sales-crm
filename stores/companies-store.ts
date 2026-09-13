@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { COMPANIES, type Company, type SortKey } from "@/data/companies";
 import { NOTIFICATIONS } from "@/data/notifications";
-import { ALL_OWNERS, ANY_STAGE } from "@/lib/companies";
+import { DEFAULT_FILTERS } from "@/lib/companies";
 
 type CompaniesState = {
   companies: Company[];
@@ -21,6 +21,7 @@ type CompaniesState = {
   setOwner: (owner: string) => void;
   setStage: (stage: string) => void;
   setActivityWindow: (days: number) => void;
+  resetFilters: () => void;
   toggleSelected: (id: string) => void;
   setSelected: (ids: string[]) => void;
   openDetail: (id: string) => void;
@@ -36,10 +37,7 @@ type CompaniesState = {
 
 export const useCompaniesStore = create<CompaniesState>((set) => ({
   companies: COMPANIES,
-  sortBy: "pipelineValue",
-  owner: ALL_OWNERS,
-  stage: ANY_STAGE,
-  activityWindow: 90,
+  ...DEFAULT_FILTERS,
   selectedIds: ["microsoft"],
   detailId: null,
   detailOpen: false,
@@ -54,6 +52,7 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   setOwner: (owner) => set({ owner }),
   setStage: (stage) => set({ stage }),
   setActivityWindow: (activityWindow) => set({ activityWindow }),
+  resetFilters: () => set({ ...DEFAULT_FILTERS }),
   toggleSelected: (id) =>
     set((state) => ({
       selectedIds: state.selectedIds.includes(id)

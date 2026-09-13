@@ -24,7 +24,7 @@ function SheetOverlay({
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/60 backdrop-blur-[6px] duration-350 data-[state=closed]:duration-250 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:ease-power3-out",
+        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:ease-power3-out fixed inset-0 z-50 bg-black/60 backdrop-blur-[6px] duration-350 data-[state=closed]:duration-250",
         className,
       )}
       {...props}
@@ -33,7 +33,7 @@ function SheetOverlay({
 }
 
 type SheetContentProps = ComponentProps<typeof SheetPrimitive.Content> & {
-  side?: "left" | "right";
+  side?: "left" | "right" | "bottom";
 };
 
 function SheetContent({
@@ -48,11 +48,13 @@ function SheetContent({
       <SheetPrimitive.Content
         data-slot="sheet-content"
         className={cn(
-          "fixed inset-y-0 z-50 flex h-dvh w-full flex-col bg-background text-foreground outline-none duration-350 data-[state=closed]:duration-250 data-[state=closed]:animate-out data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:ease-power3-out",
+          "bg-background text-foreground data-[state=closed]:animate-out data-[state=closed]:ease-power3-in data-[state=open]:animate-in data-[state=open]:ease-power3-out fixed z-50 flex w-full flex-col duration-350 outline-none data-[state=closed]:duration-250",
           side === "right" &&
-            "right-0 border-l border-line-strong data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
+            "border-line-strong data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-dvh border-l",
           side === "left" &&
-            "left-0 border-r border-line-strong data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
+            "border-line-strong data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-dvh border-r",
+          side === "bottom" &&
+            "border-line-strong shadow-overlay data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 max-h-[85dvh] rounded-t-xl border-t",
           className,
         )}
         {...props}
@@ -68,7 +70,7 @@ function SheetHeader({ className, ...props }: ComponentProps<"div">) {
     <div
       data-slot="sheet-header"
       className={cn(
-        "flex h-14 shrink-0 items-center justify-between gap-2 border-b border-line-strong px-6",
+        "border-line-strong flex h-14 shrink-0 items-center justify-between gap-2 border-b px-6",
         className,
       )}
       {...props}
@@ -81,7 +83,7 @@ function SheetFooter({ className, ...props }: ComponentProps<"div">) {
     <div
       data-slot="sheet-footer"
       className={cn(
-        "flex h-[62px] shrink-0 items-center justify-between gap-2 border-t border-line-strong px-6",
+        "border-line-strong flex h-[62px] shrink-0 items-center justify-between gap-2 border-t px-6",
         className,
       )}
       {...props}
