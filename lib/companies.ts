@@ -61,6 +61,31 @@ export function filterCompanies(
   });
 }
 
+export function companiesCsvRows(companies: Company[]) {
+  return [
+    [
+      "Company",
+      "Segment & Stage",
+      "Account Owner",
+      "Open Deals",
+      "Pipeline Value",
+      "Win Probability (%)",
+      "Last Interaction Date",
+      "Last Interaction",
+    ],
+    ...companies.map((company) => [
+      company.name,
+      company.tags.join("; "),
+      company.owner,
+      company.openDeals,
+      company.pipelineValue,
+      company.winProbability,
+      company.lastInteraction.date,
+      company.lastInteraction.label,
+    ]),
+  ];
+}
+
 export function splitTags(tags: Company["tags"]) {
   let used = 0;
   const visible: Company["tags"] = [];

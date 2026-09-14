@@ -10,6 +10,8 @@ import {
   STAGE_OPTIONS,
 } from "./filter-options";
 import type { SortKey } from "@/data/companies";
+import { TODAY, companiesCsvRows, filterCompanies } from "@/lib/companies";
+import { downloadCsv } from "@/lib/csv";
 import { useCompaniesStore } from "@/stores/companies-store";
 import ShareIcon from "@/public/assets/images/companies/toolbar/share.svg";
 import PlusIcon from "@/public/assets/images/_common/plus.svg";
@@ -28,6 +30,17 @@ export default function CompaniesToolbar() {
   const setNewCompanyOpen = useCompaniesStore(
     (state) => state.setNewCompanyOpen,
   );
+
+  function exportCsv() {
+    const { companies } = useCompaniesStore.getState();
+    const visible = filterCompanies(companies, {
+      sortBy,
+      owner,
+      stage,
+      activityWindow,
+    });
+    downloadCsv(`companies-${TODAY}.csv`, companiesCsvRows(visible));
+  }
 
   return (
     <div className="flex shrink-0 flex-wrap items-center justify-between gap-2 px-4 py-4">
@@ -61,7 +74,7 @@ export default function CompaniesToolbar() {
       </div>
 
       <div className="flex shrink-0 items-center gap-1">
-        <Button variant="secondary" size="sm">
+        <Button variant="secondary" size="sm" onClick={exportCsv}>
           <ShareIcon aria-hidden className="size-3" />
           Export
         </Button>
