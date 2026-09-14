@@ -39,6 +39,7 @@ export default function CompanyDetail() {
   const detailOpen = useCompaniesStore((state) => state.detailOpen);
   const companies = useCompaniesStore((state) => state.companies);
   const closeDetail = useCompaniesStore((state) => state.closeDetail);
+  const openProfile = useCompaniesStore((state) => state.openProfile);
   const [trendWindow, setTrendWindow] = useState(TREND_WINDOWS[1]);
   const [scoreWindow, setScoreWindow] = useState(TREND_WINDOWS[1]);
 
@@ -105,10 +106,16 @@ export default function CompanyDetail() {
 
             <DetailSection title="Account summary">
               <div className="lead-style flex flex-wrap items-center gap-x-4 gap-y-3">
-                <span className="flex items-center gap-1.5">
+                <Button
+                  variant="ghost"
+                  size="none"
+                  onClick={() => openProfile(owner.name)}
+                  aria-label={`Open ${owner.name} profile`}
+                  className="lead-style text-foreground -mx-1.5 gap-1.5 px-1.5 py-1 font-medium"
+                >
                   <Avatar src={owner.avatar} alt="" />
                   {owner.name}
-                </span>
+                </Button>
                 <span className="flex items-center gap-1">
                   <MailIcon aria-hidden className="text-soft size-3" />
                   {owner.email}

@@ -4,6 +4,7 @@ import Avatar from "@/components/_ui/avatar";
 import Button from "@/components/_ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/_ui/tabs";
 import Notifications from "./notifications/notifications";
+import { CURRENT_USER } from "@/data/companies";
 import { useCompaniesStore } from "@/stores/companies-store";
 import MenuIcon from "@/public/assets/images/_common/menu.svg";
 import ActiveDot from "@/public/assets/images/companies/header/active-dot.svg";
@@ -20,6 +21,7 @@ export default function CompaniesHeader() {
   const setActiveTab = useCompaniesStore((state) => state.setActiveTab);
   const setSidebarOpen = useCompaniesStore((state) => state.setSidebarOpen);
   const setSearchOpen = useCompaniesStore((state) => state.setSearchOpen);
+  const openProfile = useCompaniesStore((state) => state.openProfile);
 
   return (
     <header className="shrink-0">
@@ -56,10 +58,11 @@ export default function CompaniesHeader() {
             variant="secondary"
             size="none"
             className="caption-style h-[30px] gap-1.5 py-[5px] pr-[7px] pl-[5px] font-normal"
+            aria-label={`Open profile for ${CURRENT_USER.name}`}
+            onClick={() => openProfile(CURRENT_USER.name)}
           >
-            <Avatar src="/assets/images/_common/avatars/jensen.png" alt="" />
-            <span className="hidden sm:inline">Jensen Ackles</span>
-            <span className="sr-only sm:hidden">Jensen Ackles</span>
+            <Avatar src={CURRENT_USER.avatar} alt="" />
+            <span className="hidden sm:inline">{CURRENT_USER.name}</span>
           </Button>
         </div>
       </div>

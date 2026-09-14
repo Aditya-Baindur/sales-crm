@@ -45,6 +45,7 @@ export type Owner = {
   avatar: string;
   email: string;
   phone: string;
+  role: string;
 };
 
 const AVATARS = Array.from(
@@ -78,10 +79,23 @@ export const OWNERS: Owner[] = OWNER_NAMES.map((name, i) => ({
   avatar: AVATARS[i % AVATARS.length],
   email: `${name.toLowerCase().replace(" ", ".")}@crm.com`,
   phone: `+1 (202) ${String(199 + i).padStart(3, "0")}-${String(5520 + i * 37).slice(-4)}`,
+  role: i % 3 === 0 ? "Senior Account Executive" : "Account Executive",
 }));
+
+export const CURRENT_USER: Owner = {
+  name: "Jensen Ackles",
+  avatar: "/assets/images/_common/avatars/jensen.png",
+  email: "jensen.ackles@crm.com",
+  phone: "+1 (202) 184-5501",
+  role: "Head of Sales",
+};
 
 export function ownerByName(name: string): Owner {
   return OWNERS.find((owner) => owner.name === name) ?? OWNERS[0];
+}
+
+export function profileByName(name: string): Owner {
+  return name === CURRENT_USER.name ? CURRENT_USER : ownerByName(name);
 }
 
 export type Company = {

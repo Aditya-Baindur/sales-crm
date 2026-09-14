@@ -26,6 +26,7 @@ type CompanyRowProps = {
   active: boolean;
   onToggle: () => void;
   onOpen: () => void;
+  onOpenOwner: () => void;
 };
 
 function cellClass(key: TableColumnKey) {
@@ -42,6 +43,7 @@ export default function CompanyRow({
   active,
   onToggle,
   onOpen,
+  onOpenOwner,
 }: CompanyRowProps) {
   const owner = ownerByName(company.owner);
   const { visible, hidden } = splitTags(company.tags);
@@ -81,11 +83,17 @@ export default function CompanyRow({
           )}
         </span>
       </TableCell>
-      <TableCell role="cell" className={cellClass("owner")}>
-        <span className="flex items-center gap-1.5">
+      <TableCell role="cell" className={cellClass("owner")} onClick={stop}>
+        <Button
+          variant="ghost"
+          size="none"
+          onClick={onOpenOwner}
+          aria-label={`Open ${owner.name} profile`}
+          className="text-foreground -mx-1.5 gap-1.5 px-1.5 py-1 font-normal"
+        >
           <Avatar src={owner.avatar} alt="" />
           {owner.name}
-        </span>
+        </Button>
       </TableCell>
       <TableCell role="cell" className={cellClass("openDeals")}>
         {company.openDeals}

@@ -12,6 +12,8 @@ type CompaniesState = {
   selectedIds: string[];
   detailId: string | null;
   detailOpen: boolean;
+  profileName: string | null;
+  profileOpen: boolean;
   newCompanyOpen: boolean;
   sidebarOpen: boolean;
   searchOpen: boolean;
@@ -26,6 +28,8 @@ type CompaniesState = {
   setSelected: (ids: string[]) => void;
   openDetail: (id: string) => void;
   closeDetail: () => void;
+  openProfile: (name: string) => void;
+  closeProfile: () => void;
   setNewCompanyOpen: (open: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
   setSearchOpen: (open: boolean) => void;
@@ -41,6 +45,8 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
   selectedIds: ["microsoft"],
   detailId: null,
   detailOpen: false,
+  profileName: null,
+  profileOpen: false,
   newCompanyOpen: false,
   sidebarOpen: false,
   searchOpen: false,
@@ -60,8 +66,12 @@ export const useCompaniesStore = create<CompaniesState>((set) => ({
         : [...state.selectedIds, id],
     })),
   setSelected: (selectedIds) => set({ selectedIds }),
-  openDetail: (detailId) => set({ detailId, detailOpen: true }),
+  openDetail: (detailId) =>
+    set({ detailId, detailOpen: true, profileOpen: false }),
   closeDetail: () => set({ detailOpen: false }),
+  openProfile: (profileName) =>
+    set({ profileName, profileOpen: true, detailOpen: false }),
+  closeProfile: () => set({ profileOpen: false }),
   setNewCompanyOpen: (newCompanyOpen) => set({ newCompanyOpen }),
   setSidebarOpen: (sidebarOpen) => set({ sidebarOpen }),
   setSearchOpen: (searchOpen) => set({ searchOpen }),
