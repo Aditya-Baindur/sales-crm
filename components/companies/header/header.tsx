@@ -75,7 +75,12 @@ export default function CompaniesHeader() {
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="border-border border-b px-4">
           {TABS.map((tab) => (
-            <TabsTrigger key={tab.value} value={tab.value}>
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              id={`crm-tab-${tab.value}`}
+              aria-controls={`crm-panel-${tab.value}`}
+            >
               {tab.label}
             </TabsTrigger>
           ))}

@@ -29,18 +29,36 @@ export default function Companies() {
           </button>
         </div>
       )}
-      {loading ? (
-        <p role="status" className="text-soft p-5">
-          Loading your CRM…
-        </p>
-      ) : tab === "companies" ? (
-        <>
-          <CompaniesToolbar />
-          <CompaniesTable />
-        </>
-      ) : (
-        <Overview view={tab} />
-      )}
+      <div
+        id={`crm-panel-${tab}`}
+        role={
+          ["companies", "deals", "forecast"].includes(tab)
+            ? "tabpanel"
+            : "region"
+        }
+        aria-labelledby={
+          ["companies", "deals", "forecast"].includes(tab)
+            ? `crm-tab-${tab}`
+            : undefined
+        }
+        aria-label={
+          ["companies", "deals", "forecast"].includes(tab) ? undefined : tab
+        }
+        className="flex min-h-0 flex-1 flex-col"
+      >
+        {loading ? (
+          <p role="status" className="text-soft p-5">
+            Loading your CRM…
+          </p>
+        ) : tab === "companies" ? (
+          <>
+            <CompaniesToolbar />
+            <CompaniesTable />
+          </>
+        ) : (
+          <Overview view={tab} />
+        )}
+      </div>
       <CompanyDetail />
       <Profile />
       <NewCompanyDialog />

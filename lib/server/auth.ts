@@ -86,7 +86,7 @@ export async function getCurrentUser(
   const id = crypto.randomUUID();
   await db
     .prepare(
-      `INSERT INTO users (id,email,display_name,avatar_url) VALUES (?,?,?,?) ON CONFLICT(email) DO UPDATE SET updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')`,
+      `INSERT INTO users (id,email,display_name,avatar_url) VALUES (?,?,?,?) ON CONFLICT(email) DO UPDATE SET display_name=excluded.display_name,avatar_url=COALESCE(excluded.avatar_url,users.avatar_url),updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now')`,
     )
     .bind(id, identity.email, identity.name, identity.avatar)
     .run();
