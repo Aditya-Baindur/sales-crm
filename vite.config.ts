@@ -4,7 +4,7 @@ import { cloudflare } from '@cloudflare/vite-plugin';
 import svgr from 'vite-plugin-svgr';
 export default defineConfig({
   plugins: [
-    svgr({include:'**/*.svg',svgrOptions:{icon:true}}),
+    svgr({svgrOptions:{icon:true}}),
     vinext(),
     cloudflare({viteEnvironment:{name:'rsc',childEnvironments:['ssr']}}),
   ],

@@ -1,8 +1,8 @@
 import Avatar from "@/components/_ui/avatar";
 import type { ScoreCard as ScoreCardData } from "@/data/companies";
-import ClockIcon from "@/public/assets/images/companies/detail/clock.svg";
-import StarFilledIcon from "@/public/assets/images/companies/detail/star-filled.svg";
-import StarEmptyIcon from "@/public/assets/images/companies/detail/star-empty.svg";
+import ClockIcon from "@/assets/icons/companies/detail/clock.svg?react";
+import StarFilledIcon from "@/assets/icons/companies/detail/star-filled.svg?react";
+import StarEmptyIcon from "@/assets/icons/companies/detail/star-empty.svg?react";
 
 type ScoreCardProps = {
   card: ScoreCardData;

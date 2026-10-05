@@ -3,9 +3,9 @@
 import type { ComponentProps } from "react";
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
-import SquareIcon from "@/public/assets/images/companies/table/square.svg";
-import CheckSquareIcon from "@/public/assets/images/companies/table/check-square.svg";
-import MinusSquareIcon from "@/public/assets/images/companies/table/minus-square.svg";
+import SquareIcon from "@/assets/icons/companies/table/square.svg?react";
+import CheckSquareIcon from "@/assets/icons/companies/table/check-square.svg?react";
+import MinusSquareIcon from "@/assets/icons/companies/table/minus-square.svg?react";
 
 function Checkbox({
   className,

@@ -3,7 +3,7 @@
 import type { ComponentProps } from "react";
 import { Select as SelectPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
-import ChevronDownIcon from "@/public/assets/images/_common/chevron-down.svg";
+import ChevronDownIcon from "@/assets/icons/_common/chevron-down.svg?react";
 
 function Select(props: ComponentProps<typeof SelectPrimitive.Root>) {
   return <SelectPrimitive.Root data-slot="select" {...props} />;

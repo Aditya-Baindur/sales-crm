@@ -5,7 +5,7 @@ import { Command as CommandPrimitive } from "cmdk";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/_ui/scroll-area";
-import SearchIcon from "@/public/assets/images/_common/search.svg";
+import SearchIcon from "@/assets/icons/_common/search.svg?react";
 
 type CommandDialogProps = ComponentProps<typeof DialogPrimitive.Root> & {
   title: string;

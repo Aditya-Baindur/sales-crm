@@ -14,13 +14,13 @@ import {
 } from "@/components/_ui/sheet";
 import DetailSection from "../detail/detail-section";
 import ProfileAccount from "./profile-account";
-import { CURRENT_USER, profileByName } from "@/data/companies";
+import { useOwner } from "@/stores/companies-store";
 import { ALL_OWNERS, formatMoney } from "@/lib/companies";
 import { useCompaniesStore } from "@/stores/companies-store";
-import UsersIcon from "@/public/assets/images/companies/sidebar/users.svg";
-import XIcon from "@/public/assets/images/companies/detail/x.svg";
-import MailIcon from "@/public/assets/images/companies/detail/mail-04.svg";
-import PhoneIcon from "@/public/assets/images/companies/detail/phone.svg";
+import UsersIcon from "@/assets/icons/companies/sidebar/users.svg?react";
+import XIcon from "@/assets/icons/companies/detail/x.svg?react";
+import MailIcon from "@/assets/icons/companies/detail/mail-04.svg?react";
+import PhoneIcon from "@/assets/icons/companies/detail/phone.svg?react";
 
 export default function Profile() {
   const profileName = useCompaniesStore((state) => state.profileName);
@@ -30,8 +30,9 @@ export default function Profile() {
   const openDetail = useCompaniesStore((state) => state.openDetail);
   const setOwner = useCompaniesStore((state) => state.setOwner);
 
-  const person = profileName ? profileByName(profileName) : null;
-  const isCurrentUser = person?.name === CURRENT_USER.name;
+  const person = useOwner(profileName);
+  const currentUser = useCompaniesStore(s=>s.user);
+  const isCurrentUser = person.id === currentUser?.id;
   const accounts = person
     ? companies
         .filter((company) => isCurrentUser || company.owner === person.name)
@@ -123,7 +124,7 @@ export default function Profile() {
               </div>
             </DetailSection>
 
-            <DetailSection title={isCurrentUser ? "Team pipeline" : "Pipeline"}>
+            <DetailSection title={isCurrentUser ? "My pipeline" : "Pipeline"}>
               <div className="grid grid-cols-2 gap-2">
                 {stats.map((stat) => (
                   <div
@@ -142,7 +143,7 @@ export default function Profile() {
             </DetailSection>
 
             <DetailSection
-              title={isCurrentUser ? "Team accounts" : "Accounts"}
+              title={isCurrentUser ? "My accounts" : "Accounts"}
               className="shadow-none"
             >
               {accounts.length > 0 ? (
@@ -165,6 +166,7 @@ export default function Profile() {
         )}
 
         <SheetFooter>
+          {isCurrentUser && <Button variant="ghost" size="sm" href="/cdn-cgi/access/logout">Sign out</Button>}
           <SheetClose asChild>
             <Button variant="subtle" size="sm">
               Close

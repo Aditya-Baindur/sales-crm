@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/_ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import ChevronDownIcon from "@/public/assets/images/_common/chevron-down.svg";
+import ChevronDownIcon from "@/assets/icons/_common/chevron-down.svg?react";
 
 export type FilterOption = { value: string; label: string };
 
