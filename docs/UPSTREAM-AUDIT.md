@@ -2,7 +2,7 @@
 
 Source: https://github.com/kargulstudio/sales-crm, main at fork time. The original design is a Next.js 16 App Router, React 19, Tailwind 4, Radix, Motion, Zustand application. There is one page and no backend or authentication.
 
-- `data/companies.ts`: 16 sample companies, fake owners/current user, trend patterns, scorecards and presentation options. Company includes name, tags, owner name, deal count, aggregate pipeline/probability, fixed last interaction, trend and activity age. No contact/deal entity exists.
+- `data/companies.ts`: 18 sample companies, fake owners/current user, trend patterns, scorecards and presentation options. Company includes name, tags, owner name, deal count, aggregate pipeline/probability, fixed last interaction, trend and activity age. No contact/deal entity exists.
 - `data/notifications.ts`: seven fabricated notifications. `data/socials.ts` and `lib/seo.ts` contain starter site metadata.
 - `stores/companies-store.ts`: companies live only in memory; creation and notification read state disappear on refresh. Filter, selection, drawer, profile, command palette, sidebar and tab state are also in memory (appropriate for presentation state).
 - Detail “Save Update” only closes the drawer. Scorecard/trend period controls do not change source data. Activity counts and pipeline stages are arithmetic inventions in `lib/companies.ts`; its clock is fixed to September 2026.
