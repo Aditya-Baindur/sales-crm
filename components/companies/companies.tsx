@@ -11,16 +11,36 @@ import NewCompanyDialog from "./new-company/new-company-dialog";
 import CommandMenu from "./command-menu/command-menu";
 
 export default function Companies() {
-  const refresh=useCompaniesStore(s=>s.refresh);
-  const loading=useCompaniesStore(s=>s.loading);
-  const error=useCompaniesStore(s=>s.error);
-  const tab=useCompaniesStore(s=>s.activeTab);
-  useEffect(()=>{void refresh();},[refresh]);
+  const refresh = useCompaniesStore((s) => s.refresh);
+  const loading = useCompaniesStore((s) => s.loading);
+  const error = useCompaniesStore((s) => s.error);
+  const tab = useCompaniesStore((s) => s.activeTab);
+  useEffect(() => {
+    void refresh();
+  }, [refresh]);
   return (
     <section id="companies" className="flex min-h-0 min-w-0 flex-1 flex-col">
       <CompaniesHeader />
-      {error && <div role="alert" className="text-danger p-4">{error} <button className="underline" onClick={()=>void refresh()}>Retry</button></div>}
-      {loading ? <p role="status" className="p-5 text-soft">Loading your CRM…</p> : tab === 'companies' ? <><CompaniesToolbar /><CompaniesTable /></> : <Overview view={tab}/> }
+      {error && (
+        <div role="alert" className="text-danger p-4">
+          {error}{" "}
+          <button className="underline" onClick={() => void refresh()}>
+            Retry
+          </button>
+        </div>
+      )}
+      {loading ? (
+        <p role="status" className="text-soft p-5">
+          Loading your CRM…
+        </p>
+      ) : tab === "companies" ? (
+        <>
+          <CompaniesToolbar />
+          <CompaniesTable />
+        </>
+      ) : (
+        <Overview view={tab} />
+      )}
       <CompanyDetail />
       <Profile />
       <NewCompanyDialog />

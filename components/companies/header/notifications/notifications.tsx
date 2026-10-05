@@ -30,7 +30,7 @@ export default function Notifications() {
   const openDetail = useCompaniesStore((state) => state.openDetail);
 
   const unreadCount = unreadIds.length;
-  const notifications = useCompaniesStore(s=>s.notifications);
+  const notifications = useCompaniesStore((s) => s.notifications);
   const visible = notifications.filter(
     (item) => filter === "all" || unreadIds.includes(item.id),
   );

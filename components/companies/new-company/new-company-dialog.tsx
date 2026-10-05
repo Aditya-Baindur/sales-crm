@@ -66,7 +66,7 @@ const EMPTY_FORM: FormState = {
 };
 
 export default function NewCompanyDialog() {
-  const OWNERS = useCompaniesStore(s=>s.owners);
+  const OWNERS = useCompaniesStore((s) => s.owners);
   const [saving, setSaving] = useState(false);
   const open = useCompaniesStore((state) => state.newCompanyOpen);
   const setOpen = useCompaniesStore((state) => state.setNewCompanyOpen);
@@ -106,7 +106,15 @@ export default function NewCompanyDialog() {
     };
 
     setSaving(true);
-    try { await addCompany(company); } catch(error) {setNameError(error instanceof Error?error.message:'Unable to create company');} finally {setSaving(false);}
+    try {
+      await addCompany(company);
+    } catch (error) {
+      setNameError(
+        error instanceof Error ? error.message : "Unable to create company",
+      );
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (

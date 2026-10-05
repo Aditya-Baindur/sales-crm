@@ -43,8 +43,11 @@ type MobileFiltersProps = {
 };
 
 export default function MobileFilters({ className }: MobileFiltersProps) {
-  const owners = useCompaniesStore(s=>s.owners);
-  const OWNER_OPTIONS = [{value:'all',label:'All Owners'},...owners.map(o=>({value:o.name,label:o.name}))];
+  const owners = useCompaniesStore((s) => s.owners);
+  const OWNER_OPTIONS = [
+    { value: "all", label: "All Owners" },
+    ...owners.map((o) => ({ value: o.name, label: o.name })),
+  ];
   const [open, setOpen] = useState(false);
   const companies = useCompaniesStore((state) => state.companies);
   const sortBy = useCompaniesStore((state) => state.sortBy);
@@ -136,7 +139,11 @@ export default function MobileFilters({ className }: MobileFiltersProps) {
                       ) : (
                         <span className="flex items-center gap-2">
                           <Avatar
-                            src={owners.find(o=>o.name===option.value)?.avatar || "/assets/images/_common/avatar-placeholder.svg"}
+                            src={
+                              owners.find((o) => o.name === option.value)
+                                ?.avatar ||
+                              "/assets/images/_common/avatar-placeholder.svg"
+                            }
                             alt=""
                           />
                           {option.label}

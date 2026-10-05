@@ -40,7 +40,7 @@ export default function SidebarNavItem({
           className={cn(
             "text-subtle ease-power3-out group-hover:text-icon group-data-[active=true]:text-icon size-3.5 shrink-0 transition-colors duration-150",
             iconClassName,
-  onClick,
+            onClick,
           )}
         />
         <span className="min-w-0 flex-1 truncate text-left">{label}</span>

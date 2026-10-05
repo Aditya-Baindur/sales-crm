@@ -15,4 +15,3 @@ export type Notification = {
   time: string;
   unread: boolean;
 };
-

@@ -16,8 +16,11 @@ import ShareIcon from "@/assets/icons/companies/toolbar/share.svg?react";
 import PlusIcon from "@/assets/icons/_common/plus.svg?react";
 
 export default function CompaniesToolbar() {
-  const owners = useCompaniesStore(s=>s.owners);
-  const OWNER_OPTIONS = [{value:'all',label:'All Owners'},...owners.map(o=>({value:o.name,label:o.name}))];
+  const owners = useCompaniesStore((s) => s.owners);
+  const OWNER_OPTIONS = [
+    { value: "all", label: "All Owners" },
+    ...owners.map((o) => ({ value: o.name, label: o.name })),
+  ];
   const sortBy = useCompaniesStore((state) => state.sortBy);
   const owner = useCompaniesStore((state) => state.owner);
   const stage = useCompaniesStore((state) => state.stage);

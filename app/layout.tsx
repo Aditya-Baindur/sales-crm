@@ -5,11 +5,14 @@ import ScrollToTop from "@/components/_common/scroll-to-top";
 import { SIDEBAR_WIDTH_SCRIPT } from "@/lib/sidebar";
 import "./globals.css";
 
-const geist = localFont({src:'../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2',variable:'--font-geist'});
+const geist = localFont({
+  src: "../node_modules/geist/dist/fonts/geist-sans/Geist-Variable.woff2",
+  variable: "--font-geist",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  robots: {index:false,follow:false},
+  robots: { index: false, follow: false },
   ...pageMetadata({
     title: SITE_NAME,
     description: SITE_DESCRIPTION,

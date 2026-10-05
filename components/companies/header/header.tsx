@@ -17,8 +17,11 @@ const TABS = [
 ];
 
 export default function CompaniesHeader() {
-  const user = useCompaniesStore(s=>s.user);
-  const CURRENT_USER = {name:user?.display_name || "Account",avatar:user?.avatar_url || "/assets/images/_common/avatar-placeholder.svg"};
+  const user = useCompaniesStore((s) => s.user);
+  const CURRENT_USER = {
+    name: user?.display_name || "Account",
+    avatar: user?.avatar_url || "/assets/images/_common/avatar-placeholder.svg",
+  };
   const activeTab = useCompaniesStore((state) => state.activeTab);
   const setActiveTab = useCompaniesStore((state) => state.setActiveTab);
   const setSidebarOpen = useCompaniesStore((state) => state.setSidebarOpen);

@@ -13,8 +13,8 @@ import ListIcon from "@/assets/icons/companies/sidebar/list.svg?react";
 import BookClosedIcon from "@/assets/icons/companies/sidebar/book-closed.svg?react";
 import MailIcon from "@/assets/icons/companies/sidebar/mail.svg?react";
 export default function SidebarContent() {
-  const tab=useCompaniesStore(s=>s.activeTab);
-  const setTab=useCompaniesStore(s=>s.setActiveTab);
+  const tab = useCompaniesStore((s) => s.activeTab);
+  const setTab = useCompaniesStore((s) => s.setActiveTab);
   const companyCount = useCompaniesStore((state) => state.companies.length);
 
   return (
@@ -34,22 +34,66 @@ export default function SidebarContent() {
       <ScrollArea className="min-h-0 flex-1">
         <nav aria-label="Primary">
           <SidebarSection className="border-sidebar-border border-b">
-            <SidebarNavItem icon={BuildingIcon} label="Companies" count={companyCount} active={tab==='companies'} onClick={()=>setTab('companies')}/>
-            <SidebarNavItem icon={ClipboardIcon} label="Deals Board" active={tab==='deals'} onClick={()=>setTab('deals')}/>
-            <SidebarNavItem icon={BarChartIcon} label="Forecast" active={tab==='forecast'} onClick={()=>setTab('forecast')}/>
-            <SidebarNavItem icon={ListIcon} label="Activities" active={tab==='activities'} onClick={()=>setTab('activities')}/>
-            <SidebarNavItem icon={BookClosedIcon} label="Contacts" active={tab==='contacts'} onClick={()=>setTab('contacts')}/>
-            <SidebarNavItem icon={MailIcon} label="Tasks & Follow-ups" active={tab==='tasks'} onClick={()=>setTab('tasks')}/>
+            <SidebarNavItem
+              icon={BuildingIcon}
+              label="Companies"
+              count={companyCount}
+              active={tab === "companies"}
+              onClick={() => setTab("companies")}
+            />
+            <SidebarNavItem
+              icon={ClipboardIcon}
+              label="Deals Board"
+              active={tab === "deals"}
+              onClick={() => setTab("deals")}
+            />
+            <SidebarNavItem
+              icon={BarChartIcon}
+              label="Forecast"
+              active={tab === "forecast"}
+              onClick={() => setTab("forecast")}
+            />
+            <SidebarNavItem
+              icon={ListIcon}
+              label="Activities"
+              active={tab === "activities"}
+              onClick={() => setTab("activities")}
+            />
+            <SidebarNavItem
+              icon={BookClosedIcon}
+              label="Contacts"
+              active={tab === "contacts"}
+              onClick={() => setTab("contacts")}
+            />
+            <SidebarNavItem
+              icon={MailIcon}
+              label="Tasks & Follow-ups"
+              active={tab === "tasks"}
+              onClick={() => setTab("tasks")}
+            />
           </SidebarSection>
           <SidebarSection title="Manage">
-            <SidebarNavItem icon={BuildingIcon} label="Archived companies" active={tab==='archived'} onClick={()=>setTab('archived')}/>
+            <SidebarNavItem
+              icon={BuildingIcon}
+              label="Archived companies"
+              active={tab === "archived"}
+              onClick={() => setTab("archived")}
+            />
           </SidebarSection>
         </nav>
       </ScrollArea>
 
       <div className="border-sidebar-border bg-sidebar-accent flex shrink-0 flex-col gap-3 border-t p-4">
-        <span className="caption-style text-subtle">Personal CRM · Cloudflare Access</span>
-        <Button variant="muted" size="md" href="https://github.com/Aditya-Baindur/sales-crm#readme">Documentation</Button>
+        <span className="caption-style text-subtle">
+          Personal CRM · Cloudflare Access
+        </span>
+        <Button
+          variant="muted"
+          size="md"
+          href="https://github.com/Aditya-Baindur/sales-crm#readme"
+        >
+          Documentation
+        </Button>
       </div>
     </div>
   );

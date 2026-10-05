@@ -24,10 +24,7 @@ import ScoreCard from "./score-card";
 import CompanyEditor from "./company-editor";
 import CrmRecords from "./crm-records";
 import { companyActivity } from "@/lib/companies";
-import {
-  TAG_TONES,
-  TREND_WINDOWS,
-} from "@/data/companies";
+import { TAG_TONES, TREND_WINDOWS } from "@/data/companies";
 import { useCompaniesStore } from "@/stores/companies-store";
 import BuildingIcon from "@/assets/icons/companies/detail/building.svg?react";
 import XIcon from "@/assets/icons/companies/detail/x.svg?react";
@@ -47,12 +44,34 @@ export default function CompanyDetail() {
 
   const company = companies.find((item) => item.id === detailId);
   const owner = useOwner(company?.owner ?? null);
-  const activity = company ? companyActivity(company, Number(scoreWindow.match(/\d+/)?.[0] || 30)) : null;
-  const scoreCards = company ? [
-    {title:'Contact coverage',description:`${company.contactCount || 0} contacts recorded for this company.`,stars:Math.min(5, company.contactCount || 0)},
-    {title:'Follow-up coverage',description:`${company.taskCount || 0} open follow-ups.`,stars:company.taskCount ? 5 : 0},
-    {title:'Recent engagement',description:`${activity?.total || 0} interactions in this period.`,stars:Math.min(5,activity?.total || 0)},
-  ].map(c=>({...c,reviewer:owner.name,reviewerAvatar:owner.avatar,updated:'Derived from records',verdict:'Completeness indicator'})) : [];
+  const activity = company
+    ? companyActivity(company, Number(scoreWindow.match(/\d+/)?.[0] || 30))
+    : null;
+  const scoreCards = company
+    ? [
+        {
+          title: "Contact coverage",
+          description: `${company.contactCount || 0} contacts recorded for this company.`,
+          stars: Math.min(5, company.contactCount || 0),
+        },
+        {
+          title: "Follow-up coverage",
+          description: `${company.taskCount || 0} open follow-ups.`,
+          stars: company.taskCount ? 5 : 0,
+        },
+        {
+          title: "Recent engagement",
+          description: `${activity?.total || 0} interactions in this period.`,
+          stars: Math.min(5, activity?.total || 0),
+        },
+      ].map((c) => ({
+        ...c,
+        reviewer: owner.name,
+        reviewerAvatar: owner.avatar,
+        updated: "Derived from records",
+        verdict: "Completeness indicator",
+      }))
+    : [];
 
   return (
     <Sheet
@@ -135,7 +154,9 @@ export default function CompanyDetail() {
               </div>
             </DetailSection>
 
-            <DetailSection title="Edit company"><CompanyEditor key={company.id} company={company}/></DetailSection>
+            <DetailSection title="Edit company">
+              <CompanyEditor key={company.id} company={company} />
+            </DetailSection>
 
             <DetailSection title="Pipeline health">
               <PipelineHealth company={company} />
@@ -152,7 +173,10 @@ export default function CompanyDetail() {
                 />
               }
             >
-              <ActivityTrend company={company} days={Number(trendWindow.match(/\d+/)?.[0] || 30)} />
+              <ActivityTrend
+                company={company}
+                days={Number(trendWindow.match(/\d+/)?.[0] || 30)}
+              />
             </DetailSection>
 
             <DetailSection
@@ -174,12 +198,17 @@ export default function CompanyDetail() {
                 ))}
               </div>
             </DetailSection>
-            <CrmRecords key={company.id} companyId={company.id}/>
+            <CrmRecords key={company.id} companyId={company.id} />
           </ScrollArea>
         )}
 
         <SheetFooter>
-          <Button variant="link" size="none" href="https://github.com/Aditya-Baindur/sales-crm#readme" className="lead-style">
+          <Button
+            variant="link"
+            size="none"
+            href="https://github.com/Aditya-Baindur/sales-crm#readme"
+            className="lead-style"
+          >
             Documentation
           </Button>
           <div className="flex items-center gap-2">
@@ -188,7 +217,12 @@ export default function CompanyDetail() {
                 Cancel
               </Button>
             </SheetClose>
-            <Button variant="primary" size="sm" type="submit" form="company-edit">
+            <Button
+              variant="primary"
+              size="sm"
+              type="submit"
+              form="company-edit"
+            >
               Save Update
             </Button>
           </div>

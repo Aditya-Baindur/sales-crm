@@ -1,4 +1,9 @@
-export const SEGMENTS = ["Enterprise", "Mid-Market", "SMB", "Strategic"] as const;
+export const SEGMENTS = [
+  "Enterprise",
+  "Mid-Market",
+  "SMB",
+  "Strategic",
+] as const;
 
 export const STAGES = [
   "New Logo",
@@ -132,4 +137,3 @@ export type ScoreCard = {
   verdict: string;
   stars: number;
 };
-

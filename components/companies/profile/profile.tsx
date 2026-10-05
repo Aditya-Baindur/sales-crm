@@ -31,7 +31,7 @@ export default function Profile() {
   const setOwner = useCompaniesStore((state) => state.setOwner);
 
   const person = useOwner(profileName);
-  const currentUser = useCompaniesStore(s=>s.user);
+  const currentUser = useCompaniesStore((s) => s.user);
   const isCurrentUser = person.id === currentUser?.id;
   const accounts = person
     ? companies
@@ -39,7 +39,10 @@ export default function Profile() {
         .sort((a, b) => b.pipelineValue - a.pipelineValue)
     : [];
 
-  const openDeals = accounts.reduce((sum, company) => sum + company.openDeals, 0);
+  const openDeals = accounts.reduce(
+    (sum, company) => sum + company.openDeals,
+    0,
+  );
   const pipeline = accounts.reduce(
     (sum, company) => sum + company.pipelineValue,
     0,
@@ -72,7 +75,9 @@ export default function Profile() {
         <SheetHeader>
           <div className="flex items-center gap-2">
             <UsersIcon aria-hidden className="text-icon size-3.5" />
-            <SheetTitle>{isCurrentUser ? "My Profile" : "Owner Profile"}</SheetTitle>
+            <SheetTitle>
+              {isCurrentUser ? "My Profile" : "Owner Profile"}
+            </SheetTitle>
           </div>
           <SheetDescription className="sr-only">
             Contact details, pipeline summary and assigned accounts
@@ -166,7 +171,11 @@ export default function Profile() {
         )}
 
         <SheetFooter>
-          {isCurrentUser && <Button variant="ghost" size="sm" href="/cdn-cgi/access/logout">Sign out</Button>}
+          {isCurrentUser && (
+            <Button variant="ghost" size="sm" href="/cdn-cgi/access/logout">
+              Sign out
+            </Button>
+          )}
           <SheetClose asChild>
             <Button variant="subtle" size="sm">
               Close

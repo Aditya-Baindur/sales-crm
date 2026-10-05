@@ -105,10 +105,21 @@ export function companyHealth(company: Company) {
   return company.health ?? { discovery: 0, evaluation: 0, procurement: 0 };
 }
 export function companyActivity(company: Company, days = 30) {
-  const since = new Date(Date.now() - days * 86400000).toISOString().slice(0,10);
-  const rows = (company.activityByDay ?? []).filter(a=>a.day >= since);
-  const count = (types?: string[]) => rows.filter(a=>!types||types.includes(a.type)).reduce((sum,a)=>sum+a.count,0);
-  return { total: count(), touches: count(), emails: count(['email']), meetings: count(['meeting','demo']), calls: count(['call','note']) };
+  const since = new Date(Date.now() - days * 86400000)
+    .toISOString()
+    .slice(0, 10);
+  const rows = (company.activityByDay ?? []).filter((a) => a.day >= since);
+  const count = (types?: string[]) =>
+    rows
+      .filter((a) => !types || types.includes(a.type))
+      .reduce((sum, a) => sum + a.count, 0);
+  return {
+    total: count(),
+    touches: count(),
+    emails: count(["email"]),
+    meetings: count(["meeting", "demo"]),
+    calls: count(["call", "note"]),
+  };
 }
 
 export function formatDate(iso: string) {

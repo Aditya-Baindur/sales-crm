@@ -8,9 +8,16 @@
   "preview_urls": false,
   "assets": { "not_found_handling": "none" },
   "observability": { "enabled": true },
-  "d1_databases": [{ "binding": "DB", "database_name": "sales-crm", "database_id": "13f07d55-68d5-45f3-a50b-bcbd9abaa3f1", "migrations_dir": "migrations" }],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sales-crm",
+      "database_id": "13f07d55-68d5-45f3-a50b-bcbd9abaa3f1",
+      "migrations_dir": "migrations",
+    },
+  ],
   "vars": {
     "ACCESS_TEAM_DOMAIN": "https://adityabaindur20.cloudflareaccess.com",
-    "ACCESS_AUD": "018744051cd525e912298133f649055f325fee4960d1dcdff0e1d70ae7ad7a29"
-  }
+    "ACCESS_AUD": "018744051cd525e912298133f649055f325fee4960d1dcdff0e1d70ae7ad7a29",
+  },
 }
